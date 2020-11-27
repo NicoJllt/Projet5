@@ -1,0 +1,241 @@
+/*PAGE CONTACT*/
+
+#contact-elements {
+    position: relative;
+    z-index: 50;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 180px;
+
+    -webkit-animation-fill-mode: forwards;
+    -webkit-animation-duration: 2s;
+    -webkit-animation-name: slidein-contact;
+    -moz-animation-fill-mode: forwards;
+    -moz-animation-duration: 2s;
+    -moz-animation-name: slidein-contact;
+    animation-fill-mode: forwards;
+    animation-duration: 2s;
+    animation-name: slidein-contact;
+}
+
+@-webkit-keyframes slidein-contact {
+    from {
+        margin-top: 180px;
+    }
+
+    to {
+        margin-top: 160px;
+    }
+}
+
+@-moz-keyframes slidein-contact {
+    from {
+        margin-top: 180px;
+    }
+
+    to {
+        margin-top: 160px;
+    }
+}
+
+@keyframes slidein-contact {
+    from {
+        margin-top: 180px;
+    }
+
+    to {
+        margin-top: 160px;
+    }
+}
+
+#contact-bloc {
+    z-index: 100;
+    background-color: white;
+    padding: 5px;
+    opacity: 0.85;
+    border-radius: 10px;
+    overflow: hidden;
+    width: 650px;
+    box-shadow: 5px 5px 2px 1px rgba(0, 0, 0, 0.5);
+}
+
+#contact-title {
+    margin: 20px 10px 0 10px;
+    font-size: 40px;
+    font-weight: bold;
+    text-align: center;
+    user-select: none;
+}
+
+#contact-bloc p {
+    font-size: 18px;
+    text-align: center;
+    padding: 10px;
+    margin: 0;
+    line-height: 30px;
+}
+
+#click-contact-p {
+    color: black;
+    padding: 10px;
+    border: 2px solid black;
+    background-color: rgba(211, 211, 211, 0.5);
+    list-style-type: none;
+    text-decoration: none;
+}
+
+#click-contact-p:hover {
+    background-color: rgba(211, 211, 211, 1);
+}
+
+.contact-bold {
+    font-weight: bold;
+}
+
+.contact-normal {
+    font-weight: normal;
+}
+
+.contact-underline {
+    text-decoration: underline;
+}
+
+#contact-pictos-bloc {
+    vertical-align: middle;
+}
+
+.phone-number {
+    list-style-type: none;
+    text-decoration: none;
+    color: black;
+}
+
+#phone-icon-contact,
+#gmail-icon-contact {
+    margin-right: 10px;
+    font-size: 20px;
+    text-decoration: none;
+    list-style-type: none;
+}
+
+.mail-papacionu-contact {
+    color: black;
+    text-decoration: none;
+    list-style-type: none;
+}
+
+.fb-link-contact,
+.insta-link-contact {
+    color: black;
+    margin: 10px;
+    font-size: 20px;
+    list-style-type: none;
+    text-decoration: none;
+}
+
+/* MAP GOOGLE */
+#contact-map-bloc {
+    z-index: 100;
+    width: 550px;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 5px;
+    align-content: center;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 5px 5px 2px 1px rgba(0, 0, 0, 0.5);
+}
+
+#location-contact {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+/* Dimensions écrans/fenêtres */
+
+@media all and (max-width: 1150px) {
+
+    #contact-elements {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+
+    #contact-bloc {
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 800px;
+        margin-top: -60px;
+    }
+
+    #contact-map-bloc {
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+        margin-top: 20px;
+    }
+}
+
+@media all and (max-width: 950px) {
+
+    #contact-elements {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        margin-top: 30px;
+    }
+
+    #contact-bloc {
+        width: 600px;
+    }
+
+    #contact-map-bloc {
+        margin-top: 20px;
+    }
+}
+
+@media all and (max-width: 650px) {
+
+    #contact-elements {
+        animation: none;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        margin: 135px 5px 15px 5px;
+    }
+
+    #contact-bloc {
+        width: 340px;
+        margin-left: 0;
+    }
+
+    #contact-title {
+        font-size: 30px;
+    }
+
+    #contact-bloc p {
+        font-size: 14px;
+        line-height: 25px;
+        padding: 20px;
+    }
+
+    #click-contact-p {
+        line-height: 0;
+    }
+
+    #contact-map-bloc {
+        margin-top: 20px;
+        margin-left: 0;
+        width: 340px;
+        text-align: center;
+    }
+
+    #contact-map-bloc iframe {
+        width: 330px;
+    }
+
+    #location-contact {
+        font-size: 15px;
+    }
+}

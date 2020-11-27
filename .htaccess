@@ -1,0 +1,8 @@
+RewriteEngine on
+RewriteCond %{HTTP_HOST} ^papacionuparis.fr$
+RewriteRule ^(.*) http://www.papacionuparis.fr/$1 [QSA,L,R=301]
+
+RewriteEngine on
+RewriteRule ^$ home.html
+RewriteRule ^menu$ menu.html
+RewriteRule ^contact$ contact.html
