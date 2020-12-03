@@ -42,6 +42,14 @@ body {
     padding: 0;
 }
 
+.toggle_btn {
+    display: none;
+}
+
+.summary-small nav {
+    display: none;
+}
+
 .summary {
     position: fixed;
     width: 100%;
@@ -648,6 +656,11 @@ ul.gallery li a.pizza-picture-home12 {
 
 @media all and (max-width: 650px) {
 
+    html, body {
+        padding: 0;
+        margin: 0;
+    }
+
     body {
         background-image: none;
         /*        height: 100vh;*/
@@ -671,7 +684,76 @@ ul.gallery li a.pizza-picture-home12 {
         width: 100px;
     }
 
+    .toggle_btn {
+        display: block;
+        height: 30px;
+        width: 30px;
+        position: relative;
+        float: right;
+        margin-right: 10px;
+        margin-top: 5px;
+        cursor: pointer;
+    }
+
+    .toggle_btn span {
+        height: 3px;
+        background-color: #2c3e50;
+        width: 100%;
+        position: absolute;
+        top: 20px;
+        left: 0;
+    }
+
+    .toggle_btn span:before {
+        content: '';
+        height: 3px;
+        background-color: #2c3e50;
+        width: 100%;
+        position: absolute;
+        top: -10px;
+        left: 0;
+    }
+
+    .toggle_btn span:after {
+        content: '';
+        height: 3px;
+        background-color: #2c3e50;
+        width: 100%;
+        position: absolute;
+        top: 10px;
+        left: 0;
+    }
+    
+    .summary-small nav {
+        display: block;
+    }
+
+    .summary-small {
+        height: 1000px;
+        background-color: #2c3e50;
+        width: 200px;
+    }
+
+    .summary-small a {
+        color: #ffffff;
+        text-align: center;
+        display: block;
+        padding-top: 30px;
+        text-decoration: none;
+    }
+
+    .nav {
+        margin-left: -200px;
+        transition-duration: 0.2s;
+    }
+
+    .nav-open {
+        margin-left: 0;
+        transition-duration: 0.2s;
+    }
+
     .summary {
+        display: none;
         height: 60px;
     }
 
