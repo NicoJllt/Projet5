@@ -9,53 +9,15 @@ class FrontController extends Controller
 
     public function home(int $page, int $limit)
     {
-        $total = $this->episodeDAO->count();
-        $pages = ceil($total / $limit);
-        $range = range(
-            max(1, $page - 3),
-            min($pages, $page + 3)
-        );
-        $episodes = $this->episodeDAO->getEpisodes($page, $limit, true);
+        $elements = $this->menuDAO->getElements($page, $limit, true);
         $this->view->render('home', [
-            'episodes' => $episodes,
+            'elements' => $elements,
             'pages' => $pages,
             'page' => $page,
             'range' => $range,
             'limit' => $limit,
             'pagination' => true
         ]);
-    }
-
-    public function lastEpisodes(int $limit)
-    {
-        $episodes = $this->episodeDAO->getEpisodes(1, $limit, false);
-        $this->view->render('home', [
-            'episodes' => $episodes,
-            'pagination' => false
-        ]);
-    }
-
-    public function synopsis()
-    {
-        return $this->view->render('synopsis');
-    }
-
-    public function episode($episodeId)
-    {
-        $episode = $this->episodeDAO->getepisode($episodeId);
-        $messages = $this->messageDAO->getMessagesFromEpisode($episodeId);
-        return $this->view->render('single_episode', [
-            'episode' => $episode,
-            'messages' => $messages
-        ]);
-    }
-
-    public function flagComment($messageId)
-    {
-        $this->messageDAO->flagComment($messageId);
-        $this->session->setFlashMessage('flag_comment', 'Le commentaire a bien été signalé');
-        $referer = $_SERVER['HTTP_REFERER'];
-        return header('Location: ' . $referer);
     }
 
     public function register(Parameter $post)

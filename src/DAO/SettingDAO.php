@@ -11,91 +11,45 @@ class SettingDAO extends DAO
     // On aurait pu utiliser un constructeur avec paramètre dans le modèle
     private function buildObject($row)
     {
-        $message = new Setting();
-        $message->setMessageId($row['messageId']);
-        $message->setUsername($row['username']);
-        $message->setContent($row['content']);
-        $message->setDateMessage($row['dateMessage']);
-        $message->setFlag($row['flag']);
-        $message->setIdEpisode($row['idEpisode']);
-        return $message;
+        $setting = new Setting();
+        $setting->setSettingId($row['settingId']);
+        $setting->setPhone($row['phone']);
+        $setting->setMail($row['mail']);
+        $setting->setInfo($row['info']);
+        $setting->setInternet($row['internet']);
+        return $setting;
     }
 
-    public function getMessagesFromEpisode($episodeId)
+    public function getSetting($settingId)
     {
-        $sql = 'SELECT * FROM message
-        INNER JOIN user on message.idAuthor = user.userId
-        WHERE idEpisode = ? ORDER BY dateMessage DESC';
-        $result = $this->createQuery($sql, [$episodeId]);
-        $messages = [];
-        foreach ($result as $row) {
-            $messageId = $row['messageId'];
-            $messages[$messageId] = $this->buildObject($row);
-        }
+        $sql = 'SELECT setting.settingId, setting.content, user.username FROM setting 
+        INNER JOIN user ON setting.idAdmin = user.userId
+        WHERE setting.settingId = ?';
+        $result = $this->createQuery($sql, [$settingId]);
+        $setting = $result->fetch();
         $result->closeCursor();
-        return $messages;
+        return $this->buildObject($setting);
     }
 
-    public function getMessage($messageId)
+    public function addSetting(Parameter $post, $idAdmin)
     {
-        $sql = 'SELECT message.messageId, message.content, user.username, message.idEpisode, message.dateMessage, message.flag FROM message 
-        INNER JOIN user ON message.idAuthor = user.userId
-        INNER JOIN episode ON episode.episodeId = message.idEpisode
-        WHERE message.messageId = ?';
-        $result = $this->createQuery($sql, [$messageId]);
-        $message = $result->fetch();
-        $result->closeCursor();
-        return $this->buildObject($message);
+        $sql = 'INSERT INTO setting (content, idAdmin) VALUES (?, ?)';
+        $this->createQuery($sql, [$post->get('content'), $idAdmin]);
     }
 
-    public function addMessage(Parameter $post, $idEpisode, $idAuthor)
+    public function editSetting(Parameter $post, $settingId, $idAdmin)
     {
-        $sql = 'INSERT INTO message (idAuthor, content, dateMessage, flag, idEpisode) VALUES (?, ?, NOW(), ?, ?)';
-        $this->createQuery($sql, [$idAuthor, $post->get('content'), 0, $idEpisode]);
-    }
-
-    public function editMessage(Parameter $post, $messageId, $idEpisode, $idAuthor)
-    {
-        $sql = 'UPDATE message SET content=:content, idEpisode=:idEpisode, idAuthor=:idAuthor WHERE messageId=:messageId';
+        $sql = 'UPDATE setting SET content=:content, idAdmin=:idAdmin WHERE settingId=:settingId';
         $this->createQuery($sql, [
             'content' => $post->get('content'),
-            'idEpisode' => $idEpisode,
-            'idAuthor' => $idAuthor,
-            'messageId' => $messageId
+            'idAdmin' => $idAdmin,
+            'settingId' => $settingId
         ]);
     }
 
-    public function flagComment($messageId)
+    public function deleteSetting($settingId)
     {
-        $sql = 'UPDATE message SET flag = ? WHERE messageId = ?';
-        $this->createQuery($sql, [1, $messageId]);
-    }
-
-    public function unflagComment($messageId)
-    {
-        $sql = 'UPDATE message SET flag = ? WHERE messageId = ?';
-        $this->createQuery($sql, [0, $messageId]);
-    }
-
-    public function deleteMessage($messageId)
-    {
-        $sql = 'DELETE FROM message WHERE messageId = ?';
-        $this->createQuery($sql, [$messageId]);
-    }
-
-    public function getFlagComments()
-    {
-        $sql = 'SELECT message.messageId, user.username, message.content, message.idEpisode, message.dateMessage, message.flag FROM message 
-        INNER JOIN user ON message.idAuthor = user.userId
-        INNER JOIN episode ON episode.episodeId = message.idEpisode
-        WHERE flag = ? ORDER BY dateMessage DESC';
-        $result = $this->createQuery($sql, [1]);
-        $messages = [];
-        foreach ($result as $row) {
-            $messageId = $row['messageId'];
-            $messages[$messageId] = $this->buildObject($row);
-        }
-        $result->closeCursor();
-        return $messages;
+        $sql = 'DELETE FROM setting WHERE settingId = ?';
+        $this->createQuery($sql, [$settingId]);
     }
 }

@@ -16,13 +16,12 @@ class UserDAO extends DAO
         $user->setUsername($row['username']);
         $user->setMail($row['mail']);
         $user->setRegistrationDate($row['registrationDate']);
-        $user->setRoleName($row['name']);
         return $user;
     }
 
     public function getUsers()
     {
-        $sql = 'SELECT user.userId, user.username, user.mail, user.registrationDate, role.name FROM user INNER JOIN role ON user.idRole = role.roleId ORDER BY user.userId DESC';
+        $sql = 'SELECT userId, username, mail, registrationDate FROM user ORDER BY userId ASC';
         $result = $this->createQuery($sql);
         $users = [];
         foreach ($result as $row) {
@@ -35,8 +34,8 @@ class UserDAO extends DAO
 
     public function getUser($userId)
     {
-        $sql = 'SELECT user.userId, user.username, user.mail, user.registrationDate, role.name
-        FROM user INNER JOIN role ON user.idRole = role.roleId
+        $sql = 'SELECT userId, username, mail, registrationDate
+        FROM user
         WHERE user.userId=:userId';
         $result = $this->createQuery($sql, ['userId' => $userId]);
         $user = $this->buildObject($result->fetch());
@@ -47,8 +46,8 @@ class UserDAO extends DAO
     public function register(Parameter $post)
     {
         $this->checkUser($post);
-        $sql = 'INSERT INTO user (username, mail, password, registrationDate, idRole) VALUES (?, ?, ?, NOW(), ?)';
-        $this->createQuery($sql, [$post->get('username'), $post->get('mail'), password_hash($post->get('password'), PASSWORD_BCRYPT), 2]);
+        $sql = 'INSERT INTO user (username, mail, password, registrationDate) VALUES (?, ?, ?, NOW())';
+        $this->createQuery($sql, [$post->get('username'), $post->get('mail'), password_hash($post->get('password'), PASSWORD_BCRYPT)]);
     }
 
     public function checkUser(Parameter $post)
@@ -73,8 +72,9 @@ class UserDAO extends DAO
 
     public function login(Parameter $post)
     {
-        $sql = 'SELECT user.*, role.name
-        FROM user INNER JOIN role ON role.roleId = user.idRole WHERE username = ?';
+        $sql = 'SELECT *
+        FROM user 
+        WHERE username = ?';
         $data = $this->createQuery($sql, [$post->get('username')]);
         $result = $data->fetch();
         $isPasswordValid = !empty($result) && password_verify($post->get('password'), $result['password']);

@@ -8,105 +8,84 @@ class Menu
     /**
      * @var int
      */
-    private $episodeId;
+    private $elementId;
 
     /**
      * @var string
      */
-    private $title;
+    private $name;
 
     /**
      * @var string
      */
-    private $content;
-
-    /**
-     * @var \DateTime
-     */
-    private $dateEpisode;
+    private $description;
 
     /**
      * @var int
      */
-    private $idAuthor;
+    private $idAdmin;
 
     /**
      * @return int
      */
-    public function getEpisodeId()
+    public function getElementId()
     {
-        return $this->episodeId;
+        return $this->elementId;
     }
 
     /**
-     * @param int $episodeId
+     * @param int $elementId
      */
-    public function setEpisodeId($episodeId)
+    public function setElementId($elementId)
     {
-        $this->episodeId = $episodeId;
+        $this->elementId = $elementId;
     }
 
     /**
      * @return string
      */
-    public function getTitle()
+    public function getName()
     {
-        return $this->title;
+        return $this->name;
     }
 
     /**
-     * @param string $title
+     * @param string $name
      */
-    public function setTitle($title)
+    public function setName($name)
     {
-        $this->title = $title;
+        $this->name = $name;
     }
 
     /**
      * @return string
      */
-    public function getContent()
+    public function getDescription()
     {
-        return $this->content;
+        return $this->description;
     }
 
     /**
-     * @param string $content
+     * @param string $description
      */
-    public function setContent($content)
+    public function setDescription($description)
     {
-        $this->content = $content;
-    }
-
-    /**
-     * @return \DateTime
-     */
-    public function getDateEpisode()
-    {
-        return $this->dateEpisode;
-    }
-
-    /**
-     * @param \DateTime $dateEpisode
-     */
-    public function setDateEpisode($dateEpisode)
-    {
-        $this->dateEpisode = $dateEpisode;
+        $this->description = $description;
     }
 
     /**
      * @return int
      */
-    public function getIdAuthor()
+    public function getIdAdmin()
     {
-        return $this->idAuthor;
+        return $this->idAdmin;
     }
 
     /**
-     * @param int $idAuthor
+     * @param int $idAdmin
      */
-    public function setIdAuthor($idAuthor)
+    public function setIdAdmin($idAdmin)
     {
-        $this->idAuthor = $idAuthor;
+        $this->idAdmin = $idAdmin;
     }
 }

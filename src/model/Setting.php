@@ -8,7 +8,7 @@ class Setting
     /**
      * @var int
      */
-    private $messageId;
+    private $settingId;
 
     /**
      * @var string
@@ -16,39 +16,19 @@ class Setting
     private $content;
 
     /**
-     * @var \DateTime
-     */
-    private $dateMessage;
-
-    /**
-     * @var bool
-     */
-    private $flag;
-
-    /**
-     * @var int
-     */
-    private $idEpisode;
-
-    /**
-     * @var string
-     */
-    private $username;
-
-    /**
      * @return int
      */
-    public function getMessageId()
+    public function getSettingId()
     {
-        return $this->messageId;
+        return $this->settingId;
     }
 
     /**
-     * @param int $messageId
+     * @param int $settingId
      */
-    public function setMessageId($messageId)
+    public function setSettingId($settingId)
     {
-        $this->messageId = $messageId;
+        $this->settingId = $settingId;
     }
 
     /**
@@ -65,69 +45,5 @@ class Setting
     public function setContent($content)
     {
         $this->content = $content;
-    }
-
-    /**
-     * @return \DateTime
-     */
-    public function getDateMessage()
-    {
-        return $this->dateMessage;
-    }
-
-    /**
-     * @param \DateTime $dateMessage
-     */
-    public function setDateMessage($dateMessage)
-    {
-        $this->dateMessage = $dateMessage;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isFlag()
-    {
-        return $this->flag;
-    }
-
-    /**
-     * @param bool $flag
-     */
-    public function setFlag($flag)
-    {
-        $this->flag = $flag;
-    }
-
-    /**
-     * @return int
-     */
-    public function getIdEpisode()
-    {
-        return $this->idEpisode;
-    }
-
-    /**
-     * @param int $idEpisode
-     */
-    public function setIdEpisode($idEpisode)
-    {
-        $this->idEpisode = $idEpisode;
-    }
-
-    /**
-     * @return string
-     */
-    public function getUsername()
-    {
-        return $this->username;
-    }
-
-    /**
-     * @param string $username
-     */
-    public function setUsername($username)
-    {
-        $this->username = $username;
     }
 }

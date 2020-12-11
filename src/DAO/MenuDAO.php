@@ -11,72 +11,64 @@ class MenuDAO extends DAO
     // On aurait pu utiliser un constructeur avec paramètre dans le modèle
     private function buildObject($row)
     {
-        $episode = new Menu();
-        $episode->setEpisodeId($row['episodeId']);
-        $episode->setTitle($row['title']);
-        $episode->setContent($row['content']);
-        $episode->setDateEpisode($row['dateEpisode']);
-        return $episode;
+        $element = new Menu();
+        $element->setElementId($row['elementId']);
+        $element->setName($row['name']);
+        $element->setDescription($row['description']);
+        $element->setSmallPrice($row['smallPrice']);
+        $element->setBigPrice($row['bigPrice']);
+        $element->setIdAdmin($row['idAdmin']);
+        return $element;
     }
-    // Récupération des épisodes paginés
-    public function getEpisodes($page, $nb, bool $asc)
+    // Récupération des éléments
+    public function getElements($page, $nb, bool $asc)
     {
-        $sql = 'SELECT episode.episodeId, episode.title, episode.content, user.username, episode.dateEpisode
-        FROM episode INNER JOIN user ON episode.idAuthor = user.userId
-        ORDER BY episode.episodeId ' . ($asc ? 'ASC' : 'DESC') . ' LIMIT ' . ($page - 1) * $nb . ', ' . $nb;
+        $sql = 'SELECT element.elementId, element.name, element.description, element.smallPrice, element.bigPrice, user.username
+        FROM element INNER JOIN user ON element.idAdmin = user.userId
+        ORDER BY element.elementId ' . ($asc ? 'ASC' : 'DESC');
         $result = $this->createQuery($sql);
-        $episodes = [];
+        $elements = [];
         foreach ($result as $row) {
-            $episodeId = $row['episodeId'];
-            $episodes[$episodeId] = $this->buildObject($row);
+            $elementId = $row['elementId'];
+            $elements[$elementId] = $this->buildObject($row);
         }
         $result->closeCursor();
-        return $episodes;
+        return $elements;
     }
 
-    // Récupération d'un épisode en fonction de son ID
-    public function getEpisode($episodeId)
+    public function addElement(Parameter $post, $userId)
     {
-        $sql = 'SELECT episode.episodeId, episode.title, episode.content, user.username, episode.dateEpisode FROM episode INNER JOIN user ON episode.idAuthor = user.userId WHERE episode.episodeId = ?';
-        $result = $this->createQuery($sql, [$episodeId]);
-        $episode = $result->fetch();
-        $result->closeCursor();
-        return $this->buildObject($episode);
-    }
-
-    public function addEpisode(Parameter $post, $userId)
-    {
-        $sql = 'INSERT INTO episode (title, content, dateEpisode, idAuthor) VALUES (?, ?, NOW(), ?)';
+        $sql = 'INSERT INTO element (name, description, smallPrice, bigPrice, idAdmin) VALUES (?, ?, NOW(), ?)';
         $this->createQuery($sql, [
-            $post->get('title'),
-            $post->get('content'),
+            $post->get('name'),
+            $post->get('description'),
+            $post->get('smallPrice'),
+            $post->get('bigPrice'),
             $userId
         ]);
     }
 
-    public function editEpisode(Parameter $post, $episodeId, $idAuthor)
+    public function editElement(Parameter $post, $elementId, $idAdmin)
     {
-        $sql = 'UPDATE episode SET title=:title, content=:content, idAuthor=:idAuthor  WHERE episodeId=:episodeId';
+        $sql = 'UPDATE element SET name=:name, description=:description, idAdmin=:idAdmin  WHERE elementId=:elementId';
         $this->createQuery($sql, [
-            'title' => $post->get('title'),
-            'content' => $post->get('content'),
-            'idAuthor' => $idAuthor,
-            'episodeId' => $episodeId
+            'name' => $post->get('name'),
+            'description' => $post->get('description'),
+            'idAdmin' => $idAdmin,
+            'elementId' => $elementId
         ]);
     }
 
-    public function deleteEpisode($episodeId)
+    public function deleteElement($elementId)
     {
-        $sql = 'DELETE FROM message WHERE idEpisode = ?';
-        $this->createQuery($sql, [$episodeId]);
-        $sql = 'DELETE FROM episode WHERE episodeId = ?';
-        $this->createQuery($sql, [$episodeId]);
+        $sql = 'DELETE FROM element WHERE elementId = ?';
+        $this->createQuery($sql, [$elementId]);
     }
     
-    // Retourne le nombre d'épisodes
+    // Retourne le nombre d'éléments
     public function count()
     {
-        $sql = 'SELECT COUNT(*) AS count FROM episode';
+        $sql = 'SELECT COUNT(*) AS count FROM element';
         $result = $this->createQuery($sql);
         $count = $result->fetch();
         $result->closeCursor();

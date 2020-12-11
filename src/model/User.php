@@ -31,12 +31,6 @@ class User
     private $registrationDate;
 
     /**
-     * @var string
-     */
-    private $roleName;
-
-
-    /**
      * @return int
      */
     public function getUserId()
@@ -114,21 +108,5 @@ class User
     public function setRegistrationDate($registrationDate)
     {
         $this->registrationDate = $registrationDate;
-    }
-
-    /**
-     * @return string
-     */
-    public function getRoleName()
-    {
-        return $this->roleName;
-    }
-
-    /**
-     * @param string $roleName
-     */
-    public function setRoleName($roleName)
-    {
-        $this->roleName = $roleName;
     }
 }
