@@ -3,27 +3,27 @@
         <span></span>
     </div>
 
-    <div class="summary-small nav">
+    <!-- <div class="summary-small nav">
         <a href="./"><img src="images/logo.png" class="logo-small" alt="logo" /></a></li>
         <a href="./" class="home-nav-small">ACCUEIL</a>
-        <a href="/menu" class="carte-emporter-small">La carte - À EMPORTER</a>
+        <a href="../public/index.php?route=takeAway" class="carte-emporter-small">La carte - À EMPORTER</a>
         <a href="/carte-pdf.pdf" class="carte-place-small">La carte - SUR PLACE</a>
         <a href="/contact" class="contact-nav-small">CONTACT</a>
-    </div>
+    </div> -->
 
     <nav class="summary">
         <ul>
-            <li><a href="./"><img src="images/logo.png" class="logo" alt="logo" /></a></li>
+            <li><a href="./"><img src="../public/img/logo.png" class="logo" alt="logo" /></a></li>
 
             <li class="menu-nav-li"><a href="#" class="menu-nav">LA CARTE &ensp;</a>
                 <ul class="sous">
-                    <li><a href="/menu" class="carte-emporter">À EMPORTER</a></li>
+                    <li><a href="../public/index.php?route=takeAway" class="carte-emporter">À EMPORTER</a></li>
                     <li><a href="/carte-pdf.pdf" class="carte-place">SUR PLACE</a></li>
                 </ul>
             </li>
 
-            <li class="home-nav-li"><a href="./" class="home-nav"><i class="fas fa-home"></i></a></li>
-            <li class="contact-nav-li"><a href="/contact" class="contact-nav">CONTACT</a></li>
+            <li class="home-nav-li"><a href="../public/index.php" class="home-nav"><i class="fas fa-home"></i></a></li>
+            <li class="contact-nav-li"><a href="../public/index.php?route=contact" class="contact-nav">CONTACT</a></li>
         </ul>
 
         <div class="icones-nav">

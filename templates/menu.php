@@ -16,7 +16,7 @@
     <div id="menu-bloc">
         <section id="title-subtitle-bloc">
 
-            <h1 id="menu-title"><img src="images/titre-menu-detoure.png" class="logo-menu" id="titre-logo-menu" alt="titre photo" /></h1>
+            <h1 id="menu-title"><img src="../public/img/titre-menu-detoure.png" class="logo-menu" id="titre-logo-menu" alt="titre photo" /></h1>
             <h2 id="menu-subtitle">Des produits de qualité cuisinés avec amour !</h2>
         </section>
 
@@ -24,7 +24,7 @@
             <a href="https://papacionuparis.byclickeat.fr/order?fbclid=IwAR3i-74lj-cwhRtYQYjZutW0KTdYPFfO_gEK1uXBlDmk_Cu9WWIQ9Dq1IXQ" target="_blank">COMMANDER EN LIGNE</a>
         </div>
 
-        <h3 id="nos-antipasti"><img src="images/antipasti-menu-new.png" class="logos-menu" id="antipasti-logo-menu" alt="antipasti photo" /></h3>
+        <h3 id="nos-antipasti"><img src="../public/img/antipasti-menu-new.png" class="logos-menu" id="antipasti-logo-menu" alt="antipasti photo" /></h3>
         <table class="products-price-element">
             <tbody class="menu-products">
                 <tr>
@@ -34,7 +34,7 @@
             </tbody>
         </table>
 
-        <h3 id="nos-pizza-menu"><img src="images/pizza-menu-new.png" class="logos-menu" id="pizza-logo-menu" alt="pizza photo" /></h3>
+        <h3 id="nos-pizza-menu"><img src="../public/img/pizza-menu-new.png" class="logos-menu" id="pizza-logo-menu" alt="pizza photo" /></h3>
         <div id="pizza-format">Demi-lune <i class="fas fa-user"></i> | Grande (50cm) <i class="fas fa-user-friends"></i></div>
         <table class="products-price-element">
             <tbody class="menu-products">
@@ -171,7 +171,7 @@
             </tbody>
         </table>
 
-        <h3 id="nos-desserts"><img src="images/desserts-menu-new.png" class="logos-menu" id="dessert-logo-menu" alt="desserts photo" /></h3>
+        <h3 id="nos-desserts"><img src="../public/img/desserts-menu-new.png" class="logos-menu" id="dessert-logo-menu" alt="desserts photo" /></h3>
         <table class="products-price-element">
             <tbody class="menu-products">
                 <tr>
@@ -185,7 +185,7 @@
             </tbody>
         </table>
 
-        <h3 id="nos-glaces"><img src="images/glaces-menu-new.png" class="logos-menu" id="glace-logo-menu" alt="glaces photo" /></h3><br>
+        <h3 id="nos-glaces"><img src="../public/img/glaces-menu-new.png" class="logos-menu" id="glace-logo-menu" alt="glaces photo" /></h3><br>
         <table class="products-price-element">
             <tbody class="menu-products">
                 <tr>
@@ -203,7 +203,7 @@
             </tbody>
         </table>
 
-        <h3 id="nos-vins"><img src="images/vin-menu-new.png" class="logos-menu" id="vin-logo-menu" alt="vin photo" /></h3>
+        <h3 id="nos-vins"><img src="../public/img/vin-menu-new.png" class="logos-menu" id="vin-logo-menu" alt="vin photo" /></h3>
         <table class="products-price-element">
             <tbody class="menu-products">
                 <tr>
@@ -229,7 +229,7 @@
             </tbody>
         </table>
 
-        <h3 id="nos-boissons"><img src="images/boisson-menu-new.png" class="logos-menu" id="boisson-logo-menu" alt="boissons photo" /></h3>
+        <h3 id="nos-boissons"><img src="../public/img/boisson-menu-new.png" class="logos-menu" id="boisson-logo-menu" alt="boissons photo" /></h3>
         <table class="products-price-element">
             <tbody class="menu-products">
                 <tr>
@@ -248,12 +248,12 @@
         </table>
 
         <div id="pizza-picture-bloc-menu">
-            <img src="images/pizza3.jpg" class="pizza-picture-menu" alt="photo pizza" />
-            <img src="images/pizza4.jpg" class="pizza-picture-menu" alt="photo pizza" />
+            <img src="../public/img/pizza3.jpg" class="pizza-picture-menu" alt="photo pizza" />
+            <img src="../public/img/pizza4.jpg" class="pizza-picture-menu" alt="photo pizza" />
         </div>
 
         <div>
-            <img src="images/logo-footer.jpg" class="logo-footer-menu" alt="logo bas de page" />
+            <img src="../public/img/logo-footer.jpg" class="logo-footer-menu" alt="logo bas de page" />
         </div>
     </div>
 

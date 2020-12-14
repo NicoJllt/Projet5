@@ -14,7 +14,7 @@
     <?php include("template_header.php") ?>
 
     <section id="home-bloc">
-        <img src="images/icone-fond-detoure-new.png" class="background-icon" alt="background icon" />
+        <img src="../public/img/icone-fond-detoure-new.png" class="background-icon" alt="background icon" />
 
         <div id="encart-home">
             <p>OUVERT DU LUNDI AU DIMANCHE</p>
@@ -24,16 +24,16 @@
         </div>
 
         <ul class="gallery">
-            <li><a class="pizza-picture-home1"><img src="images/entree-resto.jpeg" alt="photo entrée resto" /></a></li>
-            <li><a class="pizza-picture-home2"><img src="images/bas-resto.jpg" alt="photo bas resto" /></a></li>
-            <li><a class="pizza-picture-home11"><img src="images/pizza7.jpg" alt="photo pizza" /></a></li>
-            <li><a class="pizza-picture-home4"><img src="images/bas-resto-tri.jpeg" alt="photo bas resto" /></a></li>
-            <li><a class="pizza-picture-home5"><img src="images/bar-noir-blanc.jpg" alt="photo bar" /></a></li>
-            <li><a class="pizza-picture-home8"><img src="images/pizza6.jpeg" alt="photo pizza" /></a></li>
-            <li><a class="pizza-picture-home7"><img src="images/haut-resto.jpeg" alt="photo haut resto" /></a></li>
-            <li><a class="pizza-picture-home9"><img src="images/pizza9.jpeg" alt="photo pizza" /></a></li>
-            <li><a class="pizza-picture-home10"><img src="images/pizza10.jpeg" alt="photo pizza" /></a></li>
-            <li><a class="pizza-picture-home12"><img src="images/pizza8.jpeg" alt="photo pizza" /></a></li>
+            <li><a class="pizza-picture-home1"><img src="../public/img/entree-resto.jpeg" alt="photo entrée resto" /></a></li>
+            <li><a class="pizza-picture-home2"><img src="../public/img/bas-resto.jpg" alt="photo bas resto" /></a></li>
+            <li><a class="pizza-picture-home11"><img src="../public/img/pizza7.jpg" alt="photo pizza" /></a></li>
+            <li><a class="pizza-picture-home4"><img src="../public/img/bas-resto-tri.jpeg" alt="photo bas resto" /></a></li>
+            <li><a class="pizza-picture-home5"><img src="../public/img/bar-noir-blanc.jpg" alt="photo bar" /></a></li>
+            <li><a class="pizza-picture-home8"><img src="../public/img/pizza6.jpeg" alt="photo pizza" /></a></li>
+            <li><a class="pizza-picture-home7"><img src="../public/img/haut-resto.jpeg" alt="photo haut resto" /></a></li>
+            <li><a class="pizza-picture-home9"><img src="../public/img/pizza9.jpeg" alt="photo pizza" /></a></li>
+            <li><a class="pizza-picture-home10"><img src="../public/img/pizza10.jpeg" alt="photo pizza" /></a></li>
+            <li><a class="pizza-picture-home12"><img src="../public/img/pizza8.jpeg" alt="photo pizza" /></a></li>
         </ul>
     </section>
 

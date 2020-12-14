@@ -21,7 +21,7 @@ class MenuDAO extends DAO
         return $element;
     }
     // Récupération des éléments
-    public function getElements($page, $nb, bool $asc)
+    public function getElements()
     {
         $sql = 'SELECT element.elementId, element.name, element.description, element.smallPrice, element.bigPrice, user.username
         FROM element INNER JOIN user ON element.idAdmin = user.userId

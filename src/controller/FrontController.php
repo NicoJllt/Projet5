@@ -6,18 +6,19 @@ use App\config\Parameter;
 
 class FrontController extends Controller
 {
-
-    public function home(int $page, int $limit)
+    public function home()
     {
-        $elements = $this->menuDAO->getElements($page, $limit, true);
-        $this->view->render('home', [
-            'elements' => $elements,
-            'pages' => $pages,
-            'page' => $page,
-            'range' => $range,
-            'limit' => $limit,
-            'pagination' => true
-        ]);
+        $this->view->render('home');
+    }
+
+    public function contact()
+    {
+        $this->view->render('contact');
+    }
+
+    public function takeAway()
+    {
+        $this->view->render('menu');
     }
 
     public function register(Parameter $post)

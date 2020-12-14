@@ -29,8 +29,10 @@ class Router
 
         try {
             if (isset($route)) {
-                if ($route === 'pizza') {
-                    $this->frontController->pizza($this->request->getGet()->get('pizzaId'));
+                if ($route === 'takeAway') {
+                    $this->frontController->takeAway();
+                } else if ($route === 'contact') {
+                    $this->frontController->contact();
                 } elseif ($route === 'administration') {
                     $this->backController->administration();
                 } else {

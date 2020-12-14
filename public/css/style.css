@@ -10,7 +10,7 @@
 body {
     font-family: Georgia, 'Open Sans';
 
-    background: url("../images/image-background-new1.jpg");
+    background: url("../../public/img/image-background-new1.jpg");
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center;

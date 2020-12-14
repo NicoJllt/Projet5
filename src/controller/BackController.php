@@ -35,7 +35,7 @@ class BackController extends Controller
     {
         if ($this->checkAdmin()) {
             $nbElements = $this->menuDAO->count();
-            $elements = $this->menuDAO->getElements(1, $nbElements, true);
+            $elements = $this->menuDAO->getElements();
             $parameters = $this->settingDAO->getParameters();
             $users = $this->userDAO->getUsers();
 
