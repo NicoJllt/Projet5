@@ -26,6 +26,7 @@ class View
         $content = $this->renderFile($this->file, $data);
         $view = $this->renderFile('../templates/base.php', [
             'title' => $this->title,
+            'description' => $this->description,
             'content' => $content,
             'session' => $this->session
         ]);

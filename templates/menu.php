@@ -1,10 +1,7 @@
 <!-- PAGE MENU -->
 
 <?php $this->title = "La carte - Papacionu Paris"; ?>
-
-<head>
-    <meta name="description" content="Retrouvez toutes nos pizzas à emporter grâce à notre menu en ligne." />
-</head>
+<?php $this->description = "Retrouvez toutes nos pizzas à emporter grâce à notre menu en ligne."; ?>
 
 <div class="background-image-mobile">
 </div>

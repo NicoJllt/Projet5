@@ -8,7 +8,7 @@
         <a href="./" class="home-nav-small">ACCUEIL</a>
         <a href="../public/index.php?route=takeAway" class="carte-emporter-small">La carte - À EMPORTER</a>
         <a href="/carte-pdf.pdf" class="carte-place-small">La carte - SUR PLACE</a>
-        <a href="/contact" class="contact-nav-small">CONTACT</a>
+        <a href="../public/index.php?route=contact" class="contact-nav-small">CONTACT</a>
     </div>
 
     <nav class="summary">

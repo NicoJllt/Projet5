@@ -1,10 +1,7 @@
 <!-- PAGE CONTACT -->
 
 <?php $this->title = "Contact - Papacionu Paris"; ?>
-
-<head>
-    <meta name="description" content="Contactez-nous pour plus de renseignements." />
-</head>
+<?php $this->description = "Contactez-nous pour plus de renseignements."; ?>
 
 <div class="background-image-mobile">
 </div>
