@@ -190,6 +190,46 @@ body {
     display: flex;
     flex-direction: column;
     max-height: 13em;
+
+    -webkit-animation-fill-mode: forwards;
+    -webkit-animation-duration: 1.5s;
+    -webkit-animation-name: slidein;
+    -moz-animation-fill-mode: forwards;
+    -moz-animation-duration: 1.5s;
+    -moz-animation-name: slidein;
+    animation-fill-mode: forwards;
+    animation-duration: 1.5s;
+    animation-name: slidein;
+}
+
+@-webkit-keyframes slidein {
+    from {
+        margin-top: 0px;
+    }
+
+    to {
+        margin-top: 50px;
+    }
+}
+
+@-moz-keyframes slidein {
+    from {
+        margin-top: 0px;
+    }
+
+    to {
+        margin-top: 50px;
+    }
+}
+
+@keyframes slidein {
+    from {
+        margin-top: 0px;
+    }
+
+    to {
+        margin-top: 50px;
+    }
 }
 
 .sous li {
@@ -214,10 +254,17 @@ body {
 .menu-nav-li > a::after {
     position: absolute;
     content: "\276F";
-    transform: rotate(90deg);
+    transform: rotate(270deg);
     font-size: 12px;
     top: 32px;
     color: rgba(0, 0, 0, 0.5);
+}
+
+.menu-nav-li:hover > a::after {
+    transform: rotate(90deg);
+
+    transition-property: transform;
+    transition-duration: 0.5s;
 }
 
 /*
@@ -580,7 +627,7 @@ ul.gallery li a.pizza-picture-home12 {
 @media all and (max-width: 1050px) {
 
     body {
-        background: url("../images/image-background-new1.jpg") transparent;
+        background: url("../../public/img/image-background-new1.jpg") transparent;
         background-repeat: no-repeat;
         background-position: top center;
         background-attachment: fixed;
@@ -667,7 +714,7 @@ ul.gallery li a.pizza-picture-home12 {
     }
 
     .background-image-mobile {
-        background: url("../images/image-background-mobile-filtre.jpg") transparent;
+        background: url("../../public/img/image-background-mobile-filtre.jpg") transparent;
         background-repeat: no-repeat;
         background-position: top center;
         background-size: auto 100%;
