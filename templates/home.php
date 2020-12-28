@@ -1,6 +1,6 @@
 <!-- PAGE D'ACCUEIL HOME -->
 
-<?php $this->title = "Le Papacionu Paris"; ?>
+<?php $this->title = "LE PAPACIONU PARIS"; ?>
 <?php $this->description = "Bienvenue sur le site du Papacionu Paris. Retrouvez la carte de nos pizzas ainsi que nos coordonnées."; ?>
 
 <div class="background-image-mobile">

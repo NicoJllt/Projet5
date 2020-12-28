@@ -3,7 +3,7 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link rel="icon" href="images/icone.png" />
+    <link rel="icon" type="image/png" href="../public/img/icone-ter.png" />
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/contact.css" />
     <link rel="stylesheet" href="css/menu.css" />

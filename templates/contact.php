@@ -1,6 +1,6 @@
 <!-- PAGE CONTACT -->
 
-<?php $this->title = "Contact - Papacionu Paris"; ?>
+<?php $this->title = "Contact - PAPACIONU PARIS"; ?>
 <?php $this->description = "Contactez-nous pour plus de renseignements."; ?>
 
 <div class="background-image-mobile">
@@ -13,7 +13,7 @@
     <div id="contact-elements">
 
         <div id="contact-bloc">
-            <h1 id="contact-title">Nous contacter</h1>
+            <h1 id="contact-title">NOUS CONTACTER</h1>
             <p>Vous pouvez nous joindre pour commander vos <strong>pizzas à emporter</strong> ou commandez directement en ligne en cliquant sur <br><br><a href="https://papacionuparis.byclickeat.fr/order?fbclid=IwAR3i-74lj-cwhRtYQYjZutW0KTdYPFfO_gEK1uXBlDmk_Cu9WWIQ9Dq1IXQ" target="_blank" id="click-contact-p">Click & Collect</a><br><br>
                 <span class="contact-bold">Nouveaux horaires d'ouverture :</span><br>
                 Du lundi au vendredi de 12h à 14h et de 18h30 à 22h.<br>

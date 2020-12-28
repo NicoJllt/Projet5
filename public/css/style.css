@@ -30,7 +30,7 @@ body {
     position: absolute;
     width: 135px;
     left: 0;
-    top: 0;
+    top: 3px;
     list-style-type: none;
     text-decoration: none;
 }
@@ -42,13 +42,21 @@ body {
     padding: 0;
 }
 
+/* Menu burger */
+
 .toggle_btn {
     display: none;
 }
 
-.summary-small nav {
+.summary-small {
     display: none;
 }
+
+.nav {
+    display: none;
+}
+
+/* Menu normal */
 
 .summary {
     position: fixed;
@@ -138,8 +146,65 @@ body {
     height: 25px;
 }
 
+.phone-number-nav, .mail-papacionu-nav, .fb-link-nav, .insta-link-nav {
+    margin-left: 4px;
+    margin-right: 4px;
+}
+
 .menu-nav-li {
+    vertical-align: middle;
+    /* margin-right: 11px; */
     margin-left: 25%;
+}
+/* 
+<li class="menu-nav-li">
+<a href="#" class="menu-nav">LA CARTE &ensp;</a>
+<ul class="sous">
+    <li><a href="../public/index.php?route=takeAway" class="carte-emporter">À EMPORTER</a></li>
+    <li><a href="/carte-pdf.pdf" class="carte-place">SUR PLACE</a></li>
+</ul>
+</li> */
+
+.menu-nav-li:hover li a {
+    -webkit-animation-fill-mode: forwards;
+    -webkit-animation-duration: 0.5s;
+    -webkit-animation-name: slidein-sous;
+    -moz-animation-fill-mode: forwards;
+    -moz-animation-duration: 0.5s;
+    -moz-animation-name: slidein-sous;
+    animation-fill-mode: forwards;
+    animation-duration: 0.5s;
+    animation-name: slidein-sous;
+}
+
+@-webkit-keyframes slidein-sous {
+    from {
+        height: 0;
+    }
+
+    to {
+        height: 20px;
+    }
+}
+
+@-moz-keyframes slidein-sous {
+    from {
+        height: 0;
+    }
+
+    to {
+        height: 20px;
+    }
+}
+
+@keyframes slidein-sous {
+    from {
+        height: 0;
+    }
+
+    to {
+        height: 20px;
+    }
 }
 
 .menu-nav,
@@ -190,46 +255,6 @@ body {
     display: flex;
     flex-direction: column;
     max-height: 13em;
-
-    -webkit-animation-fill-mode: forwards;
-    -webkit-animation-duration: 1.5s;
-    -webkit-animation-name: slidein;
-    -moz-animation-fill-mode: forwards;
-    -moz-animation-duration: 1.5s;
-    -moz-animation-name: slidein;
-    animation-fill-mode: forwards;
-    animation-duration: 1.5s;
-    animation-name: slidein;
-}
-
-@-webkit-keyframes slidein {
-    from {
-        margin-top: 0px;
-    }
-
-    to {
-        margin-top: 50px;
-    }
-}
-
-@-moz-keyframes slidein {
-    from {
-        margin-top: 0px;
-    }
-
-    to {
-        margin-top: 50px;
-    }
-}
-
-@keyframes slidein {
-    from {
-        margin-top: 0px;
-    }
-
-    to {
-        margin-top: 50px;
-    }
 }
 
 .sous li {
@@ -284,8 +309,7 @@ body {
     top: -10px;
     right: 20px;
     font-size: 20px;
-    cursor: pointer;
-
+    
     -webkit-animation-fill-mode: forwards;
     -webkit-animation-duration: 1.5s;
     -webkit-animation-name: slidein-icon-nav;
@@ -392,16 +416,15 @@ body {
 }
 
 .icones-nav i {
-    margin-left: 8px;
     color: black;
     text-decoration: none;
     list-style-type: none;
     padding: 10px;
 }
 
-.icones-nav i:hover {
+/* .icones-nav i:hover {
     font-size: 25px;
-}
+} */
 
 .phone-number-bloc span {
     display: none;
@@ -731,58 +754,82 @@ ul.gallery li a.pizza-picture-home12 {
         width: 100px;
     }
 
+    
+    .cercle_btn {
+        width: 50px;
+        height: 50px;
+        border-radius: 25px;
+        background-color: rgba(255, 255, 255, 0.8);
+        
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        z-index: 1990;
+    }
+
     .toggle_btn {
         display: block;
+        position: absolute;
         height: 30px;
         width: 30px;
-        position: relative;
-        float: right;
-        margin-right: 10px;
-        margin-top: 5px;
+        top: 9px;
+        right: 15px;
+        /* float: right; */
+        /* margin-right: 10px; */
+        /* margin-top: 5px; */
         cursor: pointer;
+        z-index: 2000;
     }
 
     .toggle_btn span {
-        height: 3px;
-        background-color: #2c3e50;
+        height: 2px;
+        background-color: black;
         width: 100%;
         position: absolute;
         top: 20px;
         left: 0;
+        border-radius: 20px;
     }
 
     .toggle_btn span:before {
         content: '';
-        height: 3px;
-        background-color: #2c3e50;
+        height: 2px;
+        background-color: black;
         width: 100%;
         position: absolute;
         top: -10px;
         left: 0;
+        border-radius: 20px;
     }
 
     .toggle_btn span:after {
         content: '';
-        height: 3px;
-        background-color: #2c3e50;
+        height: 2px;
+        background-color: black;
         width: 100%;
         position: absolute;
         top: 10px;
         left: 0;
+        border-radius: 20px;
     }
-    
-    .summary-small nav {
-        display: block;
+
+    .summary {
+        display: none;
     }
 
     .summary-small {
-        height: 1000px;
-        background-color: #2c3e50;
-        width: 200px;
+        position: absolute;
+        display: block;
+        height: 220px;
+        background-color: rgba(0, 0, 0, 0.8);
+        width: 100%;
+        z-index: 1500;
+        top: 0;
     }
 
     .summary-small a {
         color: #ffffff;
+        font-weight: bold;
         text-align: center;
         display: block;
         padding-top: 30px;
@@ -790,11 +837,12 @@ ul.gallery li a.pizza-picture-home12 {
     }
 
     .nav {
-        margin-left: -200px;
+        display: block;
+        margin-left: -550px;
         transition-duration: 0.2s;
     }
 
-    .nav-open {
+    .nav_open {
         margin-left: 0;
         transition-duration: 0.2s;
     }
@@ -817,11 +865,6 @@ ul.gallery li a.pizza-picture-home12 {
         vertical-align: middle;
         margin-right: 25px;
         margin-left: 15px;
-    }
-
-    .menu-nav-li {
-        vertical-align: middle;
-        margin-right: 11px;
     }
 
     .home-nav-li {
