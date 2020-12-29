@@ -18,7 +18,10 @@ class FrontController extends Controller
 
     public function takeAway()
     {
-        $this->view->render('menu');
+        $elements = $this->menuDAO->getElements();
+        $this->view->render('menu', [
+            'elements' => $elements
+        ]);
     }
 
     public function register(Parameter $post)
