@@ -8,7 +8,7 @@ class Menu
     /**
      * @var int
      */
-    private $elementId;
+    private $id;
 
     /**
      * @var string
@@ -28,17 +28,17 @@ class Menu
     /**
      * @return int
      */
-    public function getElementId()
+    public function getId()
     {
-        return $this->elementId;
+        return $this->id;
     }
 
     /**
-     * @param int $elementId
+     * @param int $id
      */
-    public function setElementId($elementId)
+    public function setId($id)
     {
-        $this->elementId = $elementId;
+        $this->id = $id;
     }
 
     /**
@@ -71,6 +71,38 @@ class Menu
     public function setDescription($description)
     {
         $this->description = $description;
+    }
+
+        /**
+     * @return int
+     */
+    public function getPriceSmall()
+    {
+        return $this->priceSmall;
+    }
+
+    /**
+     * @param int $priceSmall
+     */
+    public function setPriceSmall($priceSmall)
+    {
+        $this->priceSmall = $priceSmall;
+    }
+
+            /**
+     * @return int
+     */
+    public function getPriceBig()
+    {
+        return $this->priceBig;
+    }
+
+    /**
+     * @param int $priceBig
+     */
+    public function setPriceBig($priceBig)
+    {
+        $this->priceBig = $priceBig;
     }
 
     /**

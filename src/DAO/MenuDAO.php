@@ -12,24 +12,25 @@ class MenuDAO extends DAO
     private function buildObject($row)
     {
         $element = new Menu();
-        $element->setElementId($row['elementId']);
+        $element->setId($row['id']);
         $element->setName($row['name']);
         $element->setDescription($row['description']);
-        $element->setSmallPrice($row['smallPrice']);
-        $element->setBigPrice($row['bigPrice']);
+        $element->setPriceSmall($row['priceSmall']);
+        $element->setPriceBig($row['priceBig']);
         $element->setIdAdmin($row['idAdmin']);
         return $element;
     }
+
     // Récupération des éléments
     public function getElements()
     {
-        $sql = 'SELECT element.elementId, element.name, element.description, element.smallPrice, element.bigPrice, user.username
-        FROM element INNER JOIN user ON element.idAdmin = user.userId
-        ORDER BY element.elementId ' . ($asc ? 'ASC' : 'DESC');
+        $sql = 'SELECT pizza.id, pizza.name, pizza.description, pizza.smallPrice, pizza.bigPrice, user.username
+        FROM pizza INNER JOIN user ON pizza.idAdmin = user.userId
+        ORDER BY pizza.id ASC';
         $result = $this->createQuery($sql);
         $elements = [];
         foreach ($result as $row) {
-            $elementId = $row['elementId'];
+            $elementId = $row['id'];
             $elements[$elementId] = $this->buildObject($row);
         }
         $result->closeCursor();

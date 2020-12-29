@@ -33,7 +33,24 @@
 
         <h3 id="nos-pizza-menu"><img src="../public/img/pizza-menu-new.png" class="logos-menu" id="pizza-logo-menu" alt="pizza photo" /></h3>
         <div id="pizza-format">Demi-lune <i class="fas fa-user"></i> | Grande (50cm) <i class="fas fa-user-friends"></i></div>
+
         <table class="products-price-element">
+            <tbody class="menu-products">
+                <?php
+                foreach ($elements as $pizza) {
+                ?>
+                    <tr>
+                        <td scope="row" class="nom-pizza"><?= htmlspecialchars($pizza->getName()) ?></td>
+                        <td class="pizza-menu-description"><?= htmlspecialchars($pizza->getDescription()) ?></td>
+                        <td class="menu-price"><?= htmlspecialchars($pizza->getPriceSmall()); ?> | <?= htmlspecialchars($pizza->getPriceBig()); ?></td>
+                    </tr>
+                <?php
+                }
+                ?>
+            </tbody>
+        </table>
+
+        <!-- <table class="products-price-element">
             <tbody class="menu-products">
                 <tr>
                     <td scope="row" class="nom-pizza">Royale</td>
@@ -166,7 +183,7 @@
                     <td class="menu-price">17€ | 32€</td>
                 </tr>
             </tbody>
-        </table>
+        </table> -->
 
         <h3 id="nos-desserts"><img src="../public/img/desserts-menu-new.png" class="logos-menu" id="dessert-logo-menu" alt="desserts photo" /></h3>
         <table class="products-price-element">
