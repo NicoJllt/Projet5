@@ -24,7 +24,7 @@ class MenuDAO extends DAO
     // Récupération des éléments
     public function getElements()
     {
-        $sql = 'SELECT pizza.id, pizza.name, pizza.description, pizza.smallPrice, pizza.bigPrice, user.username
+        $sql = 'SELECT pizza.id, pizza.name, pizza.description, pizza.priceSmall, pizza.priceBig, pizza.idAdmin, user.username
         FROM pizza INNER JOIN user ON pizza.idAdmin = user.userId
         ORDER BY pizza.id ASC';
         $result = $this->createQuery($sql);
@@ -39,7 +39,7 @@ class MenuDAO extends DAO
 
     public function addElement(Parameter $post, $userId)
     {
-        $sql = 'INSERT INTO element (name, description, smallPrice, bigPrice, idAdmin) VALUES (?, ?, NOW(), ?)';
+        $sql = 'INSERT INTO element (name, description, priceSmall, priceBig, idAdmin) VALUES (?, ?, NOW(), ?)';
         $this->createQuery($sql, [
             $post->get('name'),
             $post->get('description'),

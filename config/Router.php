@@ -33,6 +33,8 @@ class Router
                     $this->frontController->takeAway();
                 } else if ($route === 'contact') {
                     $this->frontController->contact();
+                } elseif ($route === 'login') {
+                    $this->backController->administration();
                 } elseif ($route === 'administration') {
                     $this->backController->administration();
                 } else {

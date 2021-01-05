@@ -6,40 +6,40 @@
 
     <?php if ($this->session->get('flashMessage')) { ?>
         <div class="flash-messages">
-            <?= $this->session->show('add_episode'); ?>
-            <?= $this->session->show('edit_episode'); ?>
-            <?= $this->session->show('delete_episode'); ?>
-            <?= $this->session->show('unflag_comment'); ?>
-            <?= $this->session->show('delete_message'); ?>
+            <?= $this->session->show('add_element'); ?>
+            <?= $this->session->show('edit_element'); ?>
+            <?= $this->session->show('delete_element'); ?>
             <?= $this->session->show('delete_user'); ?>
         </div>
     <?php } ?>
 
     <section id="bloc-admin">
         <h1>PAGE ADMINISTRATION</h1>
-        <h2>Chapitres</h2>
-        <div id="add-episode-button">
-            <a href="../public/index.php?route=addEpisode">Ajouter un nouveau chapitre</a>
+        <h2>PIZZAS</h2>
+        <div class="add-element-button">
+            <a href="../public/index.php?route=addPizza">Ajouter une nouvelle pizza</a>
         </div>
-        <table id="chapter-table-admin">
+        <table id="element-table-admin">
             <tr>
                 <td>Id</td>
-                <td>Titre</td>
-                <td>Contenu</td>
-                <td>Date</td>
+                <td>Nom</td>
+                <td>Description</td>
+                <td>Prix demi-lune</td>
+                <td>Prix entière</td>
                 <td>Actions</td>
             </tr>
             <?php
-            foreach ($episodes as $episode) {
+            foreach ($pizzas as $pizza) {
             ?>
                 <tr>
-                    <td><?= htmlspecialchars($episode->getEpisodeId()); ?></td>
-                    <td><a href="../public/index.php?route=episode&episodeId=<?= htmlspecialchars($episode->getEpisodeId()); ?>" id="title-table-admin"><?= substr(htmlspecialchars($episode->getTitle()), 0, 50); ?></a></td>
-                    <td><?= substr(htmlspecialchars($episode->getContent()), 0, 50); ?></td>
-                    <td>Créé le : <?= htmlspecialchars($episode->getDateEpisode()); ?></td>
+                    <td><?= htmlspecialchars($pizza->getId()); ?></td>
+                    <td><?= substr(htmlspecialchars($pizza->getName()), 0, 50); ?></td>
+                    <td><?= substr(htmlspecialchars($pizza->getDescription()), 0, 500); ?></td>
+                    <td><?= htmlspecialchars($pizza->getPriceSmall()); ?></td>
+                    <td><?= htmlspecialchars($pizza->getPriceBig()); ?></td>
                     <td>
-                        <a href="../public/index.php?route=editEpisode&episodeId=<?= $episode->getEpisodeId(); ?>">Modifier</a>
-                        <a href="../public/index.php?route=deleteEpisode&episodeId=<?= $episode->getEpisodeId(); ?>">Supprimer</a>
+                        <a href="../public/index.php?route=editPizza&id=<?= $pizza->getEpisodeId(); ?>">Modifier</a>
+                        <a href="../public/index.php?route=deletePizza&id=<?= $pizza->getEpisodeId(); ?>">Supprimer</a>
                     </td>
                 </tr>
             <?php
@@ -47,26 +47,27 @@
             ?>
         </table>
 
-        <h2>Commentaires signalés</h2>
-        <table id="flag-table-admin">
+        <h2>AUTRES</h2>
+        <div class="add-element-button">
+            <a href="../public/index.php?route=addElement">Ajouter un nouvel élément</a>
+        </div>
+        <table id="element-table-admin">
             <tr>
                 <td>Id</td>
-                <td>Pseudo</td>
-                <td>Message</td>
-                <td>Date</td>
+                <td>Description</td>
+                <td>Prix</td>
                 <td>Actions</td>
             </tr>
             <?php
-            foreach ($messages as $message) {
+            foreach ($elements as $element) {
             ?>
                 <tr>
-                    <td><?= htmlspecialchars($message->getMessageId()); ?></td>
-                    <td><?= htmlspecialchars($message->getUsername()); ?></td>
-                    <td><?= substr(htmlspecialchars($message->getContent()), 0, 150); ?></td>
-                    <td>Créé le : <?= htmlspecialchars($message->getDateMessage()); ?></td>
+                    <td><?= htmlspecialchars($other->getId()); ?></td>
+                    <td><?= substr(htmlspecialchars($other->getDescription()), 0, 500); ?></td>
+                    <td><?= htmlspecialchars($other->getPrice()); ?></td>
                     <td>
-                        <a href="../public/index.php?route=unflagComment&messageId=<?= $message->getMessageId(); ?>">Désignaler le commentaire</a>
-                        <a href="../public/index.php?route=deleteMessage&messageId=<?= $message->getMessageId(); ?>">Supprimer le commentaire</a>
+                        <a href="../public/index.php?route=editElement&id=<?= $other->getId(); ?>">Modifier</a>
+                        <a href="../public/index.php?route=deleteElement&id=<?= $other->getId(); ?>">Supprimer</a>
                     </td>
                 </tr>
             <?php
@@ -78,9 +79,8 @@
         <table id="user-table-admin">
             <tr>
                 <td>Id</td>
-                <td>Pseudo</td>
-                <td>Date</td>
-                <td>Rôle</td>
+                <td>Nom d'utilisateur</td>
+                <td>Mail</td>
                 <td>Actions</td>
             </tr>
             <?php
@@ -89,8 +89,7 @@
                 <tr>
                     <td><?= htmlspecialchars($user->getUserId()); ?></td>
                     <td><?= htmlspecialchars($user->getUsername()); ?></td>
-                    <td>Créé le : <?= htmlspecialchars($user->getRegistrationDate()); ?></td>
-                    <td><?= htmlspecialchars($user->getRoleName()); ?></td>
+                    <td><?= htmlspecialchars($user->getMail()); ?></td>
                     <td>
                         <?php
                         if ($user->getRoleName() != 'admin') {
