@@ -34,14 +34,15 @@ class BackController extends Controller
     public function administration()
     {
         if ($this->checkAdmin()) {
-            // $nbElements = $this->menuDAO->count();
+            $pizzas = $this->menuDAO->getPizzas();
             $elements = $this->menuDAO->getElements();
-            $parameters = $this->settingDAO->getParameters();
+            // $parameters = $this->settingDAO->getParameters();
             $users = $this->userDAO->getUsers();
 
             return $this->view->render('administration', [
+                'pizzas' => $pizzas,
                 'elements' => $elements,
-                'paramaters' => $parameters,
+                // 'paramaters' => $parameters,
                 'users' => $users
             ]);
         }

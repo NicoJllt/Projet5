@@ -34,7 +34,7 @@ class Router
                 } else if ($route === 'contact') {
                     $this->frontController->contact();
                 } elseif ($route === 'login') {
-                    $this->backController->administration();
+                    $this->frontController->login($this->request->getPost());
                 } elseif ($route === 'administration') {
                     $this->backController->administration();
                 } else {

@@ -29,7 +29,7 @@
                 <td>Actions</td>
             </tr>
             <?php
-            foreach ($pizzas as $pizza) {
+            foreach ($elements as $pizza) {
             ?>
                 <tr>
                     <td><?= htmlspecialchars($pizza->getId()); ?></td>
@@ -59,7 +59,7 @@
                 <td>Actions</td>
             </tr>
             <?php
-            foreach ($elements as $element) {
+            foreach ($elements as $other) {
             ?>
                 <tr>
                     <td><?= htmlspecialchars($other->getId()); ?></td>
@@ -75,7 +75,7 @@
             ?>
         </table>
 
-        <h2>Utilisateurs</h2>
+        <h2>UTILISATEURS</h2>
         <table id="user-table-admin">
             <tr>
                 <td>Id</td>
