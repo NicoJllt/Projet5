@@ -6,16 +6,20 @@ use App\config\Parameter;
 
 class FrontController extends Controller
 {
+
+    // ACCUEIL
     public function home()
     {
         $this->view->render('home');
     }
 
+    // CONTACT
     public function contact()
     {
         $this->view->render('contact');
     }
 
+    // MENU
     public function takeAway()
     {
         $elements = $this->menuDAO->getElements();
@@ -24,6 +28,13 @@ class FrontController extends Controller
         ]);
     }
 
+    // BOUTON ADMIN 
+    public function admin()
+    {
+        $this->view->render('login');
+    }
+
+    // REGISTER
     public function register(Parameter $post)
     {
         if ($post->get('submit')) {
@@ -47,6 +58,7 @@ class FrontController extends Controller
         return $this->view->render('register');
     }
 
+    // LOGIN
     public function login(Parameter $post)
     {
         if ($post->get('submit')) {
@@ -56,7 +68,7 @@ class FrontController extends Controller
                 $this->session->set('user_id', $result['result']['userId']);
                 $this->session->set('role', $result['result']['name']);
                 $this->session->set('username', $post->get('username'));
-                return header('Location: ../public/index.php');
+                return header('Location: ../public/index.php?route=home');
             } else {
                 $this->session->setFlashMessage('error_login', 'Le nom d\'utilisateur ou le mot de passe sont incorrects');
                 return $this->view->render('login', [

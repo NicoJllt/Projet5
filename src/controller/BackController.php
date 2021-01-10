@@ -6,7 +6,7 @@ use App\config\Parameter;
 
 class BackController extends Controller
 {
-// Vérification connexion session
+    // Vérification connexion session
     private function checkLoggedIn()
     {
         if (!$this->session->get('username')) {
@@ -17,20 +17,19 @@ class BackController extends Controller
         }
     }
 
-// Vérification Admin
+    // Vérification Admin
     private function checkAdmin()
     {
-        $this->checkLoggedIn();
-        if (!($this->session->get('role') === 'admin')) {
+        if ($this->checkLoggedIn() && !($this->session->get('role') === 'admin')) {
             $this->session->setFlashMessage('not_admin', 'Vous n\'êtes pas autorisé à accéder à cette page');
-            return header('Location: ../public/index.php?route=home');
+            header('Location: ../public/index.php?route=home');
+            return false;
         } else {
             return true;
         }
     }
 
     // PAGE ADMINISTRATION
-
     public function administration()
     {
         if ($this->checkAdmin()) {
@@ -49,7 +48,6 @@ class BackController extends Controller
     }
 
     // MENU
-
     public function addElement(Parameter $post)
     {
         if ($this->checkAdmin()) {
@@ -69,6 +67,7 @@ class BackController extends Controller
         }
     }
 
+    // MODIFIER ELEMENT
     public function editElement(Parameter $post, $elementId)
     {
         if ($this->checkAdmin()) {
@@ -96,6 +95,7 @@ class BackController extends Controller
         }
     }
 
+    // SUPPRIMER ELEMENT
     public function deleteElement($elementId)
     {
         if ($this->checkAdmin()) {
@@ -105,8 +105,7 @@ class BackController extends Controller
         }
     }
 
-    // CONTACT
-
+    // AJOUTER ELEMENT PAGE CONTACT
     public function addSetting(Parameter $post)
     {
         if ($this->checkAdmin()) {
@@ -126,6 +125,7 @@ class BackController extends Controller
         }
     }
 
+    // MODIFIER ELEMENT PAGE CONTACT
     public function editSetting(Parameter $post, $settingId)
     {
         if ($this->checkAdmin()) {
@@ -153,6 +153,7 @@ class BackController extends Controller
         }
     }
 
+    // SUPPRIMER ELEMENT PAGE CONTACT
     public function deleteSetting($settingId)
     {
         if ($this->checkAdmin()) {
@@ -163,7 +164,6 @@ class BackController extends Controller
     }
 
     // LOGIN - PASSWORD
-
     public function updatePassword(Parameter $post)
     {
         if ($this->checkLoggedIn()) {
@@ -190,7 +190,7 @@ class BackController extends Controller
             $this->logoutOrDelete('logout');
         }
     }
-// Suppression d'un compte par un Admin
+    // Suppression d'un compte par un Admin
     public function deleteAccount()
     {
         if ($this->session->get('role') === 'admin') {
@@ -203,7 +203,7 @@ class BackController extends Controller
         }
     }
 
-// Suppression de son propre compte par un utilisateur
+    // Suppression de son propre compte par un utilisateur
     public function deleteUser($userId)
     {
         if ($this->checkAdmin()) {
@@ -217,7 +217,7 @@ class BackController extends Controller
             header('Location: ../public/index.php?route=administration');
         }
     }
-// Déconnexion et/ou suppression de compte
+    // Déconnexion et/ou suppression de compte
     private function logoutOrDelete($param)
     {
         $this->session->stop();

@@ -8,6 +8,7 @@ class View
 {
     private $file;
     private $title;
+    private $description;
     private $request;
     private $session;
 

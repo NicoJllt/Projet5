@@ -12,6 +12,9 @@
         <a href="../public/index.php?route=takeAway" class="carte-emporter-small">LA CARTE À EMPORTER</a>
         <a href="../public/img/carte-pdf.pdf" class="carte-place-small">LA CARTE SUR PLACE</a>
         <a href="../public/index.php?route=contact" class="contact-nav-small">CONTACT</a>
+        <?php if ($this->session->get('role') === 'admin') { ?>
+            <a href="../public/index.php?route=administration" class="admin-nav">Administration</a>
+        <?php } ?>
     </div>
 
     <script type="text/javascript" src="../public/js/responsiveSummary.js"></script>

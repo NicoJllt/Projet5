@@ -35,3 +35,9 @@
     </section>
 
 </div>
+
+<footer>
+    <div id="footer">
+        <a href="../public/index.php?route=admin" id="admin-button">ADMIN</a>
+    </div>
+</footer>

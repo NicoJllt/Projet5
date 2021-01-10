@@ -29,10 +29,14 @@ class Router
 
         try {
             if (isset($route)) {
-                if ($route === 'takeAway') {
+                if ($route === 'home') {
+                    $this->frontController->home();
+                } else if ($route === 'takeAway') {
                     $this->frontController->takeAway();
                 } else if ($route === 'contact') {
                     $this->frontController->contact();
+                } elseif ($route === 'admin') {
+                    $this->frontController->admin();
                 } elseif ($route === 'login') {
                     $this->frontController->login($this->request->getPost());
                 } elseif ($route === 'administration') {
