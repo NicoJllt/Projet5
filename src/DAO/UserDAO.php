@@ -12,7 +12,7 @@ class UserDAO extends DAO
     private function buildObject($row)
     {
         $user = new User();
-        $user->setUserId($row['userId']);
+        $user->setId($row['id']);
         $user->setUsername($row['username']);
         $user->setMail($row['mail']);
         $user->setRegistrationDate($row['registrationDate']);
@@ -21,23 +21,23 @@ class UserDAO extends DAO
 
     public function getUsers()
     {
-        $sql = 'SELECT userId, username, mail, registrationDate FROM user ORDER BY userId ASC';
+        $sql = 'SELECT id, username, mail, registrationDate FROM user ORDER BY id ASC';
         $result = $this->createQuery($sql);
         $users = [];
         foreach ($result as $row) {
-            $userId = $row['userId'];
-            $users[$userId] = $this->buildObject($row);
+            $id = $row['id'];
+            $users[$id] = $this->buildObject($row);
         }
         $result->closeCursor();
         return $users;
     }
 
-    public function getUser($userId)
+    public function getUser($id)
     {
-        $sql = 'SELECT userId, username, mail, registrationDate
+        $sql = 'SELECT id, username, mail, registrationDate
         FROM user
-        WHERE user.userId=:userId';
-        $result = $this->createQuery($sql, ['userId' => $userId]);
+        WHERE user.id=:id';
+        $result = $this->createQuery($sql, ['id' => $id]);
         $user = $this->buildObject($result->fetch());
         $result->closeCursor();
         return $user;
@@ -72,9 +72,7 @@ class UserDAO extends DAO
 
     public function login(Parameter $post)
     {
-        $sql = 'SELECT *
-        FROM user 
-        WHERE username = ?';
+        $sql = 'SELECT * FROM user WHERE username = ?';
         $data = $this->createQuery($sql, [$post->get('username')]);
         $result = $data->fetch();
         $isPasswordValid = !empty($result) && password_verify($post->get('password'), $result['password']);
@@ -96,9 +94,9 @@ class UserDAO extends DAO
         $this->createQuery($sql, [$username]);
     }
 
-    public function deleteUser($userId)
+    public function deleteUser($id)
     {
-        $sql = 'DELETE FROM user WHERE userId = ?';
-        $this->createQuery($sql, [$userId]);
+        $sql = 'DELETE FROM user WHERE id = ?';
+        $this->createQuery($sql, [$id]);
     }
 }

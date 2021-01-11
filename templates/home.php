@@ -38,6 +38,6 @@
 
 <footer>
     <div id="footer">
-        <a href="../public/index.php?route=admin" id="admin-button">ADMIN</a>
+        <a href="../public/index.php?route=admin" id="admin-button"><i class="fas fa-users-cog"></i></a>
     </div>
 </footer>

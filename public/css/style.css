@@ -482,19 +482,13 @@ body {
     clear: both;
     position: relative;
     text-align: right;
-    margin-right: 60px;
-    height: 100px;
-    margin-top: -50px;
+    margin-right: 50px;
+    height: 50px;
 }
 
 #admin-button {
-    font-weight: bold;
-    border: 1px solid black;
-    background-color: rgba(211, 211, 211, 0.5);
     color: black;
-    padding: 10px;
-    text-decoration: none;
-    list-style-type: none;
+    font-size: 30px;
 }
 
 /* ACCUEIL BACKGROUND ICONE + GALLERIE PHOTOS */

@@ -65,8 +65,7 @@ class FrontController extends Controller
             $result = $this->userDAO->login($post);
             if ($result && $result['isPasswordValid']) {
                 $this->session->setFlashMessage('login', 'Vous êtes maintenant connecté');
-                $this->session->set('user_id', $result['result']['userId']);
-                $this->session->set('role', $result['result']['name']);
+                $this->session->set('user_id', $result['result']['id']);
                 $this->session->set('username', $post->get('username'));
                 return header('Location: ../public/index.php?route=home');
             } else {
