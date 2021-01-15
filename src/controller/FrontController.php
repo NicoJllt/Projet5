@@ -22,8 +22,10 @@ class FrontController extends Controller
     // MENU
     public function takeAway()
     {
+        $pizzas = $this->menuDAO->getPizzas();
         $elements = $this->menuDAO->getElements();
         $this->view->render('menu', [
+            'pizzas' => $pizzas,
             'elements' => $elements
         ]);
     }

@@ -37,7 +37,7 @@
         <table class="products-price-element">
             <tbody class="menu-products">
                 <?php
-                foreach ($elements as $pizza) {
+                foreach ($pizzas as $pizza) {
                 ?>
                     <tr>
                         <td scope="row" class="nom-pizza"><?= htmlspecialchars($pizza->getName()) ?></td>

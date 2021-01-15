@@ -24,23 +24,23 @@ class MenuDAO extends DAO
     public function getPizzas()
     {
         $sql = 'SELECT pizza.id, pizza.name, pizza.description, pizza.priceSmall, pizza.priceBig, pizza.idAdmin, user.username
-        FROM pizza INNER JOIN user ON pizza.idAdmin = user.userId
+        FROM pizza INNER JOIN user ON pizza.idAdmin = user.id
         ORDER BY pizza.id ASC';
         $result = $this->createQuery($sql);
-        $elements = [];
+        $pizzas = [];
         foreach ($result as $row) {
-            $elementId = $row['id'];
-            $elements[$elementId] = $this->buildObject($row);
+            $pizzaId = $row['id'];
+            $pizzas[$pizzaId] = $this->buildObject($row);
         }
         $result->closeCursor();
-        return $elements;
+        return $pizzas;
     }
 
     // Récupération des éléments
     public function getElements()
     {
         $sql = 'SELECT other.id, other.description, other.price, other.category, other.idAdmin, user.username
-        FROM other INNER JOIN user ON other.idAdmin = user.userId
+        FROM other INNER JOIN user ON other.idAdmin = user.id
         ORDER BY other.id ASC';
         $result = $this->createQuery($sql);
         $elements = [];

@@ -20,6 +20,16 @@ class Menu
      */
     private $description;
 
+        /**
+     * @var int
+     */
+    private $priceSmall;
+
+        /**
+     * @var int
+     */
+    private $priceBig;
+
     /**
      * @var int
      */
