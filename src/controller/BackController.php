@@ -11,7 +11,8 @@ class BackController extends Controller
     {
         if (!$this->session->get('username')) {
             $this->session->setFlashMessage('need_login', 'Vous devez vous connecter pour accéder à cette section');
-            return header('Location: ../public/index.php?route=login');
+            header('Location: ../public/index.php?route=login');
+            return false;
         } else {
             return true;
         }

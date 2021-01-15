@@ -69,7 +69,7 @@ class FrontController extends Controller
                 $this->session->setFlashMessage('login', 'Vous êtes maintenant connecté');
                 $this->session->set('user_id', $result['result']['id']);
                 $this->session->set('username', $post->get('username'));
-                return header('Location: ../public/index.php?route=home');
+                return header('Location: ../public/index.php');
             } else {
                 $this->session->setFlashMessage('error_login', 'Le nom d\'utilisateur ou le mot de passe sont incorrects');
                 return $this->view->render('login', [

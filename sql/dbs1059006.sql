@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: db5001238059.hosting-data.io
--- Generation Time: Dec 29, 2020 at 01:04 PM
+-- Generation Time: Jan 15, 2021 at 01:15 PM
 -- Server version: 5.7.30-log
 -- PHP Version: 7.0.33-0+deb9u10
 
@@ -31,7 +31,8 @@ SET time_zone = "+00:00";
 CREATE TABLE `other` (
   `id` int(11) NOT NULL COMMENT 'ID autre',
   `description` text NOT NULL COMMENT 'Nom autre',
-  `price` int(11) NOT NULL COMMENT 'Prix autre',
+  `price` decimal(4,2) NOT NULL COMMENT 'Prix autre',
+  `category` enum('Entrée','Dessert','Glace','Vin','Boisson') DEFAULT NULL COMMENT 'Catégorie',
   `IdAdmin` int(11) NOT NULL COMMENT 'ID admin'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -39,10 +40,21 @@ CREATE TABLE `other` (
 -- Dumping data for table `other`
 --
 
-INSERT INTO `other` (`id`, `description`, `price`, `IdAdmin`) VALUES
-(1, 'Burrata nature ou fumée (125gr) et ses légumes grillés	', 10, 1),
-(2, 'Mousse de mascarpone avec spéculoos et framboises', 7, 1),
-(3, 'Tiramisu au café', 7, 1);
+INSERT INTO `other` (`id`, `description`, `price`, `category`, `IdAdmin`) VALUES
+(1, 'Burrata nature ou fumée (125gr) et ses légumes grillés	', '10.00', 'Entrée', 1),
+(2, 'Mousse de mascarpone avec spéculoos et framboises', '7.00', 'Dessert', 1),
+(3, 'Tiramisu au café', '7.00', 'Dessert', 1),
+(4, 'Clémentine Corse', '7.00', 'Glace', 1),
+(5, 'Vanille Canistrelli', '7.00', 'Glace', 1),
+(6, 'Praliné nocciola', '7.00', 'Glace', 1),
+(7, 'Clos Ornaca, Ajaccio (Rouge)', '26.00', 'Vin', 1),
+(8, 'Chianti Leonardo (Rouge)', '28.00', 'Vin', 1),
+(9, 'Sant Armettu (Rouge) - 50cl', '18.00', 'Vin', 1),
+(10, 'Clos Ornasca, Ajaccio (Blanc)', '26.00', 'Vin', 1),
+(11, 'Prosecco (Blanc pétillant) ou Lambrusco (Rouge pétillant)', '23.00', 'Vin', 1),
+(12, 'Coca-Cola ou Coca-Cola zéro', '2.50', 'Boisson', 1),
+(13, 'Ice Tea Pêche', '2.50', 'Boisson', 1),
+(14, 'Perrier', '2.50', 'Boisson', 1);
 
 -- --------------------------------------------------------
 
@@ -109,7 +121,7 @@ CREATE TABLE `setting` (
 --
 
 CREATE TABLE `user` (
-  `userId` int(11) NOT NULL COMMENT 'ID utilisateur',
+  `id` int(11) NOT NULL COMMENT 'ID utilisateur',
   `username` varchar(50) NOT NULL COMMENT 'Nom utilisateur',
   `mail` varchar(50) NOT NULL COMMENT 'Mail utilisateur',
   `password` varchar(50) NOT NULL COMMENT 'Mot de passe utilisateur',
@@ -120,7 +132,7 @@ CREATE TABLE `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`userId`, `username`, `mail`, `password`, `registrationDate`) VALUES
+INSERT INTO `user` (`id`, `username`, `mail`, `password`, `registrationDate`) VALUES
 (1, 'Magali', 'magali@gmail.com', 'admin1', '2020-12-03 12:43:06'),
 (2, 'Don Pierre', 'donpierre@gmail.com', 'admin2', '2020-12-03 12:44:01');
 
@@ -146,7 +158,7 @@ ALTER TABLE `pizza`
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`userId`),
+  ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `username_login` (`username`),
   ADD UNIQUE KEY `mail_login` (`mail`);
 
@@ -158,7 +170,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `other`
 --
 ALTER TABLE `other`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID autre', AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID autre', AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `pizza`
@@ -170,7 +182,7 @@ ALTER TABLE `pizza`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `userId` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID utilisateur', AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID utilisateur', AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
@@ -180,7 +192,7 @@ ALTER TABLE `user`
 -- Constraints for table `pizza`
 --
 ALTER TABLE `pizza`
-  ADD CONSTRAINT `id_admin` FOREIGN KEY (`idAdmin`) REFERENCES `user` (`userId`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `id_admin` FOREIGN KEY (`idAdmin`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
