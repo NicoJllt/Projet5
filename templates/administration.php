@@ -2,8 +2,6 @@
 
 <div class="blocpage">
 
-    <?php include("template_header.php") ?>
-
     <?php if ($this->session->get('flashMessage')) { ?>
         <div class="flash-messages">
             <?= $this->session->show('add_element'); ?>

@@ -8,8 +8,6 @@
 
 <div class="blocpage">
 
-    <?php include("template_header.php") ?>
-
     <section id="home-bloc">
         <img src="../public/img/icone-fond-detoure-new.png" class="background-icon" alt="background icon" />
 

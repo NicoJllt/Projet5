@@ -8,8 +8,6 @@
 
 <div class="blocpage">
 
-    <?php include("template_header.php") ?>
-
     <div id="menu-bloc">
         <section id="title-subtitle-bloc">
 

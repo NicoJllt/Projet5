@@ -1,7 +1,6 @@
 <?php $this->title = "Connexion administrateur"; ?>
 
 <div class="blocpage">
-    <?php include("template_header.php") ?>
 
     <form method="post" action="../public/index.php?route=login" id="login-section">
         <div class="constraint-error">

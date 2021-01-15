@@ -8,8 +8,6 @@
 
 <div class="blocpage">
     
-    <?php include("template_header.php") ?>
-
     <div id="contact-elements">
 
         <div id="contact-bloc">

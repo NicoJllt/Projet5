@@ -23,10 +23,10 @@ class FrontController extends Controller
     public function takeAway()
     {
         $pizzas = $this->menuDAO->getPizzas();
-        $elements = $this->menuDAO->getElements();
+        // $elements = $this->menuDAO->getElements();
         $this->view->render('menu', [
             'pizzas' => $pizzas,
-            'elements' => $elements
+            // 'elements' => $elements
         ]);
     }
 
@@ -67,8 +67,8 @@ class FrontController extends Controller
             $result = $this->userDAO->login($post);
             if ($result && $result['isPasswordValid']) {
                 $this->session->setFlashMessage('login', 'Vous êtes maintenant connecté');
-                $this->session->set('user_id', $result['result']['id']);
-                $this->session->set('username', $post->get('username'));
+                $this->session->set('user_id', $result['id']);
+                $this->session->set('username', $result['username']);
                 return header('Location: ../public/index.php');
             } else {
                 $this->session->setFlashMessage('error_login', 'Le nom d\'utilisateur ou le mot de passe sont incorrects');

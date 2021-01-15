@@ -16,6 +16,9 @@
 </head>
 
 <body>
+
+    <?php include("template_header.php") ?>
+
     <div id="content">
         <?= $content ?>
     </div>
