@@ -3,7 +3,7 @@
 namespace App\src\model;
 
 // Eléments qui se chargent des échanges avec la base de données
-class Menu
+class Other
 {
     /**
      * @var int
@@ -13,22 +13,17 @@ class Menu
     /**
      * @var string
      */
-    private $name;
+    private $description;
+
+    /**
+     * @var int
+     */
+    private $price;
 
     /**
      * @var string
      */
-    private $description;
-
-        /**
-     * @var int
-     */
-    private $priceSmall;
-
-        /**
-     * @var int
-     */
-    private $priceBig;
+    private $category;
 
     /**
      * @var int
@@ -54,22 +49,6 @@ class Menu
     /**
      * @return string
      */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * @param string $name
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-    }
-
-    /**
-     * @return string
-     */
     public function getDescription()
     {
         return $this->description;
@@ -83,36 +62,36 @@ class Menu
         $this->description = $description;
     }
 
-        /**
+    /**
      * @return int
      */
-    public function getPriceSmall()
+    public function getPrice()
     {
-        return $this->priceSmall;
+        return $this->price;
     }
 
     /**
-     * @param int $priceSmall
+     * @param int $price
      */
-    public function setPriceSmall($priceSmall)
+    public function setPrice($price)
     {
-        $this->priceSmall = $priceSmall;
-    }
-
-            /**
-     * @return int
-     */
-    public function getPriceBig()
-    {
-        return $this->priceBig;
+        $this->price = $price;
     }
 
     /**
-     * @param int $priceBig
+     * @return string
      */
-    public function setPriceBig($priceBig)
+    public function getCategory()
     {
-        $this->priceBig = $priceBig;
+        return $this->category;
+    }
+
+    /**
+     * @param string $category
+     */
+    public function setCategory($category)
+    {
+        $this->category = $category;
     }
 
     /**

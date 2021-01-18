@@ -20,21 +20,21 @@ class FrontController extends Controller
     }
 
     // MENU
-    public function takeAway()
+    public function menu()
     {
-        $pizzas = $this->menuDAO->getPizzas();
-        // $elements = $this->menuDAO->getElements();
+        $pizzas = $this->pizzaDAO->getPizzas();
+        $elements = $this->otherDAO->getElements();
         $this->view->render('menu', [
             'pizzas' => $pizzas,
-            // 'elements' => $elements
+            'elements' => $elements
         ]);
     }
 
-    // BOUTON ADMIN 
-    public function admin()
-    {
-        $this->view->render('login');
-    }
+    // // BOUTON ADMIN 
+    // public function admin()
+    // {
+    //     $this->view->render('login');
+    // }
 
     // REGISTER
     public function register(Parameter $post)
@@ -43,9 +43,6 @@ class FrontController extends Controller
             $errors = $this->validation->validate($post, 'User');
             if ($this->userDAO->checkUser($post)) {
                 $errors['username'] = $this->userDAO->checkUser($post);
-            }
-            if ($this->userDAO->checkMail($post)) {
-                $errors['mail'] = $this->userDAO->checkMail($post);
             }
             if (!$errors) {
                 $this->userDAO->register($post);

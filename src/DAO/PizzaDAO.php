@@ -3,15 +3,15 @@
 namespace App\src\DAO;
 
 use App\config\Parameter;
-use App\src\model\Menu;
+use App\src\model\Pizza;
 
-class MenuDAO extends DAO
+class PizzaDAO extends DAO
 {
     // Création d'un objet modèle sur la base des données reçues de la BDD
     // On aurait pu utiliser un constructeur avec paramètre dans le modèle
     private function buildObject($row)
     {
-        $element = new Menu();
+        $element = new Pizza();
         $element->setId($row['id']);
         $element->setName($row['name']);
         $element->setDescription($row['description']);
@@ -36,55 +36,41 @@ class MenuDAO extends DAO
         return $pizzas;
     }
 
-    // Récupération des éléments
-    public function getElements()
+    public function addPizza(Parameter $post, $idAdmin)
     {
-        $sql = 'SELECT other.id, other.description, other.price, other.category, other.idAdmin, user.username
-        FROM other INNER JOIN user ON other.idAdmin = user.id
-        ORDER BY other.id ASC';
-        $result = $this->createQuery($sql);
-        $elements = [];
-        foreach ($result as $row) {
-            $elementId = $row['id'];
-            $elements[$elementId] = $this->buildObject($row);
-        }
-        $result->closeCursor();
-        return $elements;
-    }
-
-    public function addElement(Parameter $post, $userId)
-    {
-        $sql = 'INSERT INTO element (name, description, priceSmall, priceBig, idAdmin) VALUES (?, ?, NOW(), ?)';
+        $sql = 'INSERT INTO pizza (name, description, priceSmall, priceBig, idAdmin) VALUES (?, ?, ?, ?)';
         $this->createQuery($sql, [
             $post->get('name'),
             $post->get('description'),
-            $post->get('smallPrice'),
-            $post->get('bigPrice'),
-            $userId
+            $post->get('priceSmall'),
+            $post->get('priceBig'),
+            $idAdmin
         ]);
     }
 
-    public function editElement(Parameter $post, $elementId, $idAdmin)
+    public function editPizza(Parameter $post, $id, $idAdmin)
     {
-        $sql = 'UPDATE element SET name=:name, description=:description, idAdmin=:idAdmin  WHERE elementId=:elementId';
+        $sql = 'UPDATE pizza SET name=:name, description=:description, priceSmall=:priceSmall, priceBig=:priceBig, idAdmin=:idAdmin  WHERE id=:id';
         $this->createQuery($sql, [
             'name' => $post->get('name'),
             'description' => $post->get('description'),
+            'priceSmall' => $post->get('priceSmall'),
+            'priceBig' => $post->get('priceBig'),
             'idAdmin' => $idAdmin,
-            'elementId' => $elementId
+            'id' => $id
         ]);
     }
 
-    public function deleteElement($elementId)
+    public function deletePizza($id)
     {
-        $sql = 'DELETE FROM element WHERE elementId = ?';
-        $this->createQuery($sql, [$elementId]);
+        $sql = 'DELETE FROM pizza WHERE id = ?';
+        $this->createQuery($sql, [$id]);
     }
     
     // Retourne le nombre d'éléments
     public function count()
     {
-        $sql = 'SELECT COUNT(*) AS count FROM element';
+        $sql = 'SELECT COUNT(*) AS count FROM pizza';
         $result = $this->createQuery($sql);
         $count = $result->fetch();
         $result->closeCursor();

@@ -31,12 +31,14 @@ class Router
             if (isset($route)) {
                 if ($route === 'home') {
                     $this->frontController->home();
-                } else if ($route === 'takeAway') {
-                    $this->frontController->takeAway();
+                } else if ($route === 'menu') {
+                    $this->frontController->menu();
                 } else if ($route === 'contact') {
                     $this->frontController->contact();
-                } elseif ($route === 'admin') {
-                    $this->frontController->admin();
+                // } elseif ($route === 'admin') {
+                //     $this->frontController->admin();
+                } elseif ($route === 'register') {
+                    $this->frontController->register($this->request->getPost());
                 } elseif ($route === 'login') {
                     $this->frontController->login($this->request->getPost());
                 } elseif ($route === 'administration') {

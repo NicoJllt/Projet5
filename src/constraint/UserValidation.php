@@ -30,9 +30,6 @@ class UserValidation extends Validation
         } elseif ($name === 'password') {
             $error = $this->checkPassword($name, $value);
             $this->addError($name, $error);
-        } elseif ($name === 'mail') {
-            $error = $this->checkMail($name, $value);
-            $this->addError($name, $error);
         }
     }
 
@@ -55,19 +52,6 @@ class UserValidation extends Validation
         }
         if ($this->constraint->maxLength($name, $value, 50)) {
             return $this->constraint->maxLength('Nom d\'utilisateur', $value, 50);
-        }
-    }
-
-    private function checkMail($name, $value)
-    {
-        if ($this->constraint->notBlank($name, $value)) {
-            return $this->constraint->notBlank('Mail', $value);
-        }
-        if ($this->constraint->minLength($name, $value, 2)) {
-            return $this->constraint->minLength('Mail', $value, 2);
-        }
-        if ($this->constraint->maxLength($name, $value, 50)) {
-            return $this->constraint->maxLength('Mail', $value, 50);
         }
     }
 

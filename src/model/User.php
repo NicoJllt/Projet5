@@ -30,6 +30,11 @@ class User
      */
     private $registrationDate;
 
+        /**
+     * @var bool
+     */
+    private $isActive;
+
     /**
      * @return int
      */
@@ -108,5 +113,21 @@ class User
     public function setRegistrationDate($registrationDate)
     {
         $this->registrationDate = $registrationDate;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getIsActive()
+    {
+        return $this->isActive;
+    }
+
+    /**
+     * @param bool $isActive
+     */
+    public function setIsActive($isActive)
+    {
+        $this->isActive = $isActive;
     }
 }

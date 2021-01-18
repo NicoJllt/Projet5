@@ -16,6 +16,7 @@ class UserDAO extends DAO
         $user->setUsername($row['username']);
         $user->setMail($row['mail']);
         $user->setRegistrationDate($row['registrationDate']);
+        $user->setIsActive($row['isActive']);
         return $user;
     }
 
@@ -46,8 +47,8 @@ class UserDAO extends DAO
     public function register(Parameter $post)
     {
         $this->checkUser($post);
-        $sql = 'INSERT INTO user (username, mail, password, registrationDate) VALUES (?, ?, ?, NOW())';
-        $this->createQuery($sql, [$post->get('username'), $post->get('mail'), password_hash($post->get('password'), PASSWORD_BCRYPT)]);
+        $sql = 'INSERT INTO user (username, password, registrationDate, isActive) VALUES (?, ?, NOW(), NULL)';
+        $this->createQuery($sql, [$post->get('username'), password_hash($post->get('password'), PASSWORD_BCRYPT)]);
     }
 
     public function checkUser(Parameter $post)

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: db5001238059.hosting-data.io
--- Generation Time: Jan 15, 2021 at 01:15 PM
+-- Generation Time: Jan 18, 2021 at 04:38 PM
 -- Server version: 5.7.30-log
 -- PHP Version: 7.0.33-0+deb9u10
 
@@ -31,30 +31,30 @@ SET time_zone = "+00:00";
 CREATE TABLE `other` (
   `id` int(11) NOT NULL COMMENT 'ID autre',
   `description` text NOT NULL COMMENT 'Nom autre',
-  `price` decimal(4,2) NOT NULL COMMENT 'Prix autre',
+  `price` double NOT NULL COMMENT 'Prix autre',
   `category` enum('Entrée','Dessert','Glace','Vin','Boisson') DEFAULT NULL COMMENT 'Catégorie',
-  `IdAdmin` int(11) NOT NULL COMMENT 'ID admin'
+  `idAdmin` int(11) NOT NULL COMMENT 'ID admin'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `other`
 --
 
-INSERT INTO `other` (`id`, `description`, `price`, `category`, `IdAdmin`) VALUES
-(1, 'Burrata nature ou fumée (125gr) et ses légumes grillés	', '10.00', 'Entrée', 1),
-(2, 'Mousse de mascarpone avec spéculoos et framboises', '7.00', 'Dessert', 1),
-(3, 'Tiramisu au café', '7.00', 'Dessert', 1),
-(4, 'Clémentine Corse', '7.00', 'Glace', 1),
-(5, 'Vanille Canistrelli', '7.00', 'Glace', 1),
-(6, 'Praliné nocciola', '7.00', 'Glace', 1),
-(7, 'Clos Ornaca, Ajaccio (Rouge)', '26.00', 'Vin', 1),
-(8, 'Chianti Leonardo (Rouge)', '28.00', 'Vin', 1),
-(9, 'Sant Armettu (Rouge) - 50cl', '18.00', 'Vin', 1),
-(10, 'Clos Ornasca, Ajaccio (Blanc)', '26.00', 'Vin', 1),
-(11, 'Prosecco (Blanc pétillant) ou Lambrusco (Rouge pétillant)', '23.00', 'Vin', 1),
-(12, 'Coca-Cola ou Coca-Cola zéro', '2.50', 'Boisson', 1),
-(13, 'Ice Tea Pêche', '2.50', 'Boisson', 1),
-(14, 'Perrier', '2.50', 'Boisson', 1);
+INSERT INTO `other` (`id`, `description`, `price`, `category`, `idAdmin`) VALUES
+(1, 'Burrata nature ou fumée (125gr) et ses légumes grillés	', 10, 'Entrée', 1),
+(2, 'Mousse de mascarpone avec spéculoos et framboises', 7, 'Dessert', 1),
+(3, 'Tiramisu au café', 7, 'Dessert', 1),
+(4, 'Clémentine Corse', 7, 'Glace', 1),
+(5, 'Vanille Canistrelli', 7, 'Glace', 1),
+(6, 'Praliné nocciola', 7, 'Glace', 1),
+(7, 'Clos Ornaca, Ajaccio (Rouge)', 26, 'Vin', 1),
+(8, 'Chianti Leonardo (Rouge)', 28, 'Vin', 1),
+(9, 'Sant Armettu (Rouge) - 50cl', 18, 'Vin', 1),
+(10, 'Clos Ornasca, Ajaccio (Blanc)', 26, 'Vin', 1),
+(11, 'Prosecco (Blanc pétillant) ou Lambrusco (Rouge pétillant)', 23, 'Vin', 1),
+(12, 'Coca-Cola ou Coca-Cola zéro', 2.5, 'Boisson', 1),
+(13, 'Ice Tea Pêche', 2.5, 'Boisson', 1),
+(14, 'Perrier', 2.5, 'Boisson', 1);
 
 -- --------------------------------------------------------
 
@@ -67,7 +67,7 @@ CREATE TABLE `pizza` (
   `name` varchar(50) NOT NULL COMMENT 'Nom pizza',
   `description` text NOT NULL COMMENT 'Description pizza',
   `priceSmall` int(11) NOT NULL COMMENT 'Prix demi-lune',
-  `priceBig` int(11) NOT NULL COMMENT 'Prix grande',
+  `priceBig` int(11) DEFAULT NULL COMMENT 'Prix grande',
   `idAdmin` int(11) NOT NULL COMMENT 'ID admin'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -125,16 +125,17 @@ CREATE TABLE `user` (
   `username` varchar(50) NOT NULL COMMENT 'Nom utilisateur',
   `mail` varchar(50) NOT NULL COMMENT 'Mail utilisateur',
   `password` varchar(50) NOT NULL COMMENT 'Mot de passe utilisateur',
-  `registrationDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Date d''inscription'
+  `registrationDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Date d''inscription',
+  `isActive` tinyint(1) DEFAULT '0' COMMENT 'Utilisateur actif'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `username`, `mail`, `password`, `registrationDate`) VALUES
-(1, 'Magali', 'magali@gmail.com', 'admin1', '2020-12-03 12:43:06'),
-(2, 'Don Pierre', 'donpierre@gmail.com', 'admin2', '2020-12-03 12:44:01');
+INSERT INTO `user` (`id`, `username`, `mail`, `password`, `registrationDate`, `isActive`) VALUES
+(1, 'Magali', 'magali@gmail.com', 'admin1', '2020-12-03 12:43:06', 1),
+(2, 'Don Pierre', 'donpierre@gmail.com', 'admin2', '2020-12-03 12:44:01', 1);
 
 --
 -- Indexes for dumped tables
@@ -145,7 +146,7 @@ INSERT INTO `user` (`id`, `username`, `mail`, `password`, `registrationDate`) VA
 --
 ALTER TABLE `other`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `id_admin` (`IdAdmin`) USING BTREE;
+  ADD KEY `id_admin` (`idAdmin`) USING BTREE;
 
 --
 -- Indexes for table `pizza`

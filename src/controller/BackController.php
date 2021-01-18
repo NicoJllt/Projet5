@@ -34,14 +34,14 @@ class BackController extends Controller
     public function administration()
     {
         if ($this->checkAdmin()) {
-            $pizzas = $this->menuDAO->getPizzas();
-            $elements = $this->menuDAO->getElements();
+            $pizzas = $this->pizzaDAO->getPizzas();
+            // $elements = $this->otherDAO->getElements();
             // $parameters = $this->settingDAO->getParameters();
             $users = $this->userDAO->getUsers();
 
             return $this->view->render('administration', [
                 'pizzas' => $pizzas,
-                'elements' => $elements,
+                // 'elements' => $elements,
                 // 'paramaters' => $parameters,
                 'users' => $users
             ]);
@@ -53,9 +53,9 @@ class BackController extends Controller
     {
         if ($this->checkAdmin()) {
             if ($post->get('submit')) {
-                $errors = $this->validation->validate($post, 'Menu');
+                $errors = $this->validation->validate($post, 'Other');
                 if (!$errors) {
-                    $this->menuDAO->addElement($post, $this->session->get('user_id'));
+                    $this->otherDAO->addElement($post, $this->session->get('user_id'));
                     $this->session->setFlashMessage('add_element', 'L\'élément a bien été ajouté');
                     return header('Location: ../public/index.php?route=administration');
                 }
@@ -73,9 +73,9 @@ class BackController extends Controller
     {
         if ($this->checkAdmin()) {
             if ($post->get('submit')) {
-                $errors = $this->validation->validate($post, 'Menu');
+                $errors = $this->validation->validate($post, 'Other');
                 if (!$errors) {
-                    $this->menuDAO->editElement($post, $elementId, $this->session->get('user_id'));
+                    $this->otherDAO->editElement($post, $elementId, $this->session->get('user_id'));
                     $this->session->setFlashMessage('edit_element', 'L\'élément a bien été mis à jour');
                     return header('Location: ../public/index.php?route=administration');
                 }
@@ -84,7 +84,7 @@ class BackController extends Controller
                     'errors' => $errors
                 ]);
             }
-            $element = $this->menuDAO->getElement($elementId);
+            $element = $this->otherDAO->getElement($elementId);
             $post->set('elementId', $element->getElementId());
             $post->set('name', $element->getName());
             $post->set('description', $element->getDescription());
@@ -100,7 +100,7 @@ class BackController extends Controller
     public function deleteElement($elementId)
     {
         if ($this->checkAdmin()) {
-            $this->menuDAO->deleteElement($elementId);
+            $this->otherDAO->deleteElement($elementId);
             $this->session->setFlashMessage('delete_element', 'L\'élément a bien été supprimé');
             return header('Location: ../public/index.php?route=administration');
         }

@@ -16,11 +16,16 @@
 </head>
 
 <body>
+    <div class="blocpage">
 
-    <?php include("template_header.php") ?>
+        <div class="background-image-mobile">
+        </div>
 
-    <div id="content">
-        <?= $content ?>
+        <?php include("template_header.php") ?>
+
+        <div id="content">
+            <?= $content ?>
+        </div>
     </div>
 </body>
 
