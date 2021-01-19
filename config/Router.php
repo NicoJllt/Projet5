@@ -35,12 +35,12 @@ class Router
                     $this->frontController->menu();
                 } else if ($route === 'contact') {
                     $this->frontController->contact();
-                // } elseif ($route === 'admin') {
-                //     $this->frontController->admin();
                 } elseif ($route === 'register') {
                     $this->frontController->register($this->request->getPost());
                 } elseif ($route === 'login') {
                     $this->frontController->login($this->request->getPost());
+                } elseif ($route === 'logout') {
+                    $this->backController->logout();
                 } elseif ($route === 'administration') {
                     $this->backController->administration();
                 } else {

@@ -14,7 +14,6 @@ class UserDAO extends DAO
         $user = new User();
         $user->setId($row['id']);
         $user->setUsername($row['username']);
-        $user->setMail($row['mail']);
         $user->setRegistrationDate($row['registrationDate']);
         $user->setIsActive($row['isActive']);
         return $user;
@@ -35,9 +34,7 @@ class UserDAO extends DAO
 
     public function getUser($id)
     {
-        $sql = 'SELECT id, username, mail, registrationDate
-        FROM user
-        WHERE user.id=:id';
+        $sql = 'SELECT id, username, mail, registrationDate FROM user WHERE id=:id';
         $result = $this->createQuery($sql, ['id' => $id]);
         $user = $this->buildObject($result->fetch());
         $result->closeCursor();
@@ -47,6 +44,7 @@ class UserDAO extends DAO
     public function register(Parameter $post)
     {
         $this->checkUser($post);
+        // $this->checkAdmin($isActive);
         $sql = 'INSERT INTO user (username, password, registrationDate, isActive) VALUES (?, ?, NOW(), NULL)';
         $this->createQuery($sql, [$post->get('username'), password_hash($post->get('password'), PASSWORD_BCRYPT)]);
     }
@@ -61,15 +59,14 @@ class UserDAO extends DAO
         }
     }
 
-    public function checkMail(Parameter $post)
-    {
-        $sql = 'SELECT COUNT(mail) FROM user WHERE mail = ?';
-        $result = $this->createQuery($sql, [$post->get('mail')]);
-        $isUnique = $result->fetchColumn();
-        if ($isUnique) {
-            return '<p>L\'adresse mail existe déjà</p>';
-        }
-    }
+    // public function checkAdmin($isActive)
+    // {
+    //     $sql = 'SELECT isActive FROM user WHERE id=:id';
+    //     $result = $this->createQuery($sql, ['isActive' => $isActive]);
+    //     if ($isActive === NULL) {
+    //         return '<p>Votre compte n\'est pas activé.</p>';
+    //     }
+    // }
 
     public function login(Parameter $post)
     {

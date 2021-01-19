@@ -19,21 +19,21 @@ class BackController extends Controller
     }
 
     // Vérification Admin
-    private function checkAdmin()
-    {
-        if ($this->checkLoggedIn() && !($this->session->get('role') === 'admin')) {
-            $this->session->setFlashMessage('not_admin', 'Vous n\'êtes pas autorisé à accéder à cette page');
-            header('Location: ../public/index.php?route=home');
-            return false;
-        } else {
-            return true;
-        }
-    }
+    // private function checkAdmin()
+    // {
+    //     if ($this->checkLoggedIn() && !($this->session->get('role') === 'admin')) {
+    //         $this->session->setFlashMessage('not_admin', 'Vous n\'êtes pas autorisé à accéder à cette page');
+    //         header('Location: ../public/index.php?route=home');
+    //         return false;
+    //     } else {
+    //         return true;
+    //     }
+    // }
 
     // PAGE ADMINISTRATION
     public function administration()
     {
-        if ($this->checkAdmin()) {
+        if ($this->checkLoggedIn()) {
             $pizzas = $this->pizzaDAO->getPizzas();
             // $elements = $this->otherDAO->getElements();
             // $parameters = $this->settingDAO->getParameters();
@@ -51,7 +51,7 @@ class BackController extends Controller
     // MENU
     public function addElement(Parameter $post)
     {
-        if ($this->checkAdmin()) {
+        if ($this->checkLoggedIn()) {
             if ($post->get('submit')) {
                 $errors = $this->validation->validate($post, 'Other');
                 if (!$errors) {
@@ -71,7 +71,7 @@ class BackController extends Controller
     // MODIFIER ELEMENT
     public function editElement(Parameter $post, $elementId)
     {
-        if ($this->checkAdmin()) {
+        if ($this->checkLoggedIn()) {
             if ($post->get('submit')) {
                 $errors = $this->validation->validate($post, 'Other');
                 if (!$errors) {
@@ -99,7 +99,7 @@ class BackController extends Controller
     // SUPPRIMER ELEMENT
     public function deleteElement($elementId)
     {
-        if ($this->checkAdmin()) {
+        if ($this->checkLoggedIn()) {
             $this->otherDAO->deleteElement($elementId);
             $this->session->setFlashMessage('delete_element', 'L\'élément a bien été supprimé');
             return header('Location: ../public/index.php?route=administration');
@@ -109,7 +109,7 @@ class BackController extends Controller
     // AJOUTER ELEMENT PAGE CONTACT
     public function addSetting(Parameter $post)
     {
-        if ($this->checkAdmin()) {
+        if ($this->checkLoggedIn()) {
             if ($post->get('submit')) {
                 $errors = $this->validation->validate($post, 'Setting');
                 if (!$errors) {
@@ -129,7 +129,7 @@ class BackController extends Controller
     // MODIFIER ELEMENT PAGE CONTACT
     public function editSetting(Parameter $post, $settingId)
     {
-        if ($this->checkAdmin()) {
+        if ($this->checkLoggedIn()) {
             if ($post->get('submit')) {
                 $errors = $this->validation->validate($post, 'Setting');
                 if (!$errors) {
@@ -157,7 +157,7 @@ class BackController extends Controller
     // SUPPRIMER ELEMENT PAGE CONTACT
     public function deleteSetting($settingId)
     {
-        if ($this->checkAdmin()) {
+        if ($this->checkLoggedIn()) {
             $this->settingDAO->deleteSetting($settingId);
             $this->session->setFlashMessage('delete_element', 'L\'élément a bien été supprimé');
             return header('Location: ../public/index.php?route=administration');
@@ -207,7 +207,7 @@ class BackController extends Controller
     // Suppression de son propre compte par un utilisateur
     public function deleteUser($userId)
     {
-        if ($this->checkAdmin()) {
+        if ($this->checkLoggedIn()) {
             $toDelete = $this->userDAO->getUser($userId);
             if ($toDelete->getRoleName() === 'admin') {
                 $this->session->setFlashMessage('delete_user', 'Vous n\'êtes pas autorisé à supprimer un administrateur.');

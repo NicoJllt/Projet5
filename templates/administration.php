@@ -2,10 +2,15 @@
 
 <?php if ($this->session->get('flashMessage')) { ?>
     <div class="flash-messages">
-        <?= $this->session->show('add_element'); ?>
-        <?= $this->session->show('edit_element'); ?>
-        <?= $this->session->show('delete_element'); ?>
-        <?= $this->session->show('delete_user'); ?>
+        <p><?= $this->session->show('add_pizza'); ?></p>
+        <p><?= $this->session->show('edit_pizza'); ?></p>
+        <p><?= $this->session->show('delete_pizza'); ?></p>
+        <p><?= $this->session->show('edit_pizza'); ?></p>
+        <p><?= $this->session->show('register'); ?></p>
+        <p><?= $this->session->show('login'); ?></p>
+        <p><?= $this->session->show('logout'); ?></p>
+        <p><?= $this->session->show('delete_user'); ?></p>
+        <p><?= $this->session->show('delete_account'); ?></p>
     </div>
 <?php } ?>
 

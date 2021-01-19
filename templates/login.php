@@ -1,6 +1,7 @@
 <?php $this->title = "Connexion administrateur"; ?>
 
 <form method="post" action="../public/index.php?route=login" id="login-section">
+    <h1>SE CONNECTER</h1>
     <div class="constraint-error">
         <?= $this->session->show('error_login'); ?><br>
     </div>

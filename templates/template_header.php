@@ -17,8 +17,6 @@
         <?php } ?>
     </div>
 
-    <script type="text/javascript" src="../public/js/responsiveSummary.js"></script>
-
     <nav class="summary">
         <ul>
             <li><a href="./"><img src="../public/img/logo.png" class="logo" alt="logo" /></a></li>

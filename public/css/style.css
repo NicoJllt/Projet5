@@ -455,17 +455,26 @@ body {
     overflow: hidden;
 }
 
-/* REGISTER */
-#register-section {
+/* REGISTER & LOGIN */
+#register-section, #login-section {
     display: block;
     position: relative;
     font-weight: bold;
-    margin: 200px 650px 0 650px;
+    margin: 200px 620px 0 620px;
     text-align: center;
     background-color: rgba(255, 255, 255, 0.8);
     line-height: 30px;
     padding: 20px;
     border: 1px solid black;
+}
+
+#login-section h1, #register-section h1 {
+    font-size: 25px;
+    margin-bottom: 20px;
+}
+
+#pseudo, #password {
+    width: 200px;
 }
 
 .submit-form {
@@ -477,26 +486,40 @@ body {
     cursor: pointer;
 }
 
-/* LOGIN */
-#login-section {
-    display: block;
-    position: relative;
+/* FLASH MESSAGES */
+.flash-messages {
+    color: white;
     font-weight: bold;
-    margin: 200px 650px 0 650px;
     text-align: center;
-    background-color: rgba(255, 255, 255, 0.8);
-    line-height: 30px;
-    padding: 20px;
-    border: 1px solid black;
+    border-radius: 10px;
+    background-color: black;
+    display: block;
+    position: fixed;
+    margin: 10px;
+    padding: 10px;
+    z-index: 100;
+    bottom: 0;
+    right: 0;
+
+    -webkit-animation: fadeinout 4s linear forwards;
+    animation: fadeinout 4s linear forwards;
 }
 
-.submit-form {
-    padding: 10px;
-    border: 1px solid black;
-    font-weight: bold;
-    margin-top: 10px;
-    text-transform: uppercase;
-    cursor: pointer;
+@-webkit-keyframes fadeinout {
+    0%,100% { opacity: 0; }
+    50% { opacity: 1; }
+}
+
+@keyframes fadeinout {
+    0%,100% { opacity: 0; }
+    50% { opacity: 1; }
+}
+
+/* CONSTRAINT ERRORS */
+.constraint-error {
+    color: red;
+    font-style: italic;
+    font-size: 13px;
 }
 
 /* FOOTER ADMIN */

@@ -1,6 +1,7 @@
 <?php $this->title = "S'enregistrer"; ?>
 
 <form method="post" action="../public/index.php?route=register" id="register-section">
+    <h1>S'ENREGISTRER</h1>
     <label for="pseudo">NOM D'UTILISATEUR</label><br>
     <input type="text" id="pseudo" name="username" value="<?= isset($post) ? htmlspecialchars($post->get('username')) : ''; ?>"><br>
     <div class="constraint-error">

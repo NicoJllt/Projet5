@@ -3,6 +3,14 @@
 <?php $this->title = "LE PAPACIONU PARIS"; ?>
 <?php $this->description = "Bienvenue sur le site du Papacionu Paris. Retrouvez la carte de nos pizzas ainsi que nos coordonnées."; ?>
 
+<?php if ($this->session->get('flashMessage')) { ?>
+    <div class="flash-messages">
+        <p><?= $this->session->show('register'); ?></p>
+        <p><?= $this->session->show('login'); ?></p>
+        <p><?= $this->session->show('logout'); ?></p>
+    </div>
+<?php } ?>
+
 <section id="home-bloc">
     <img src="../public/img/icone-fond-detoure-new.png" class="background-icon" alt="background icon" />
 
@@ -29,6 +37,17 @@
 
 <footer>
     <div id="footer">
-        <a href="../public/index.php?route=login" id="admin-button"><i class="fas fa-users-cog"></i></a>
+        <?php
+        if ($this->session->get('username')) {
+        ?>
+            <a href="../public/index.php?route=administration" class="admin-nav">Administration</a>
+            <a href="../public/index.php?route=logout" class="logout-nav">Déconnexion</a>
+        <?php
+        } else {
+        ?>
+            <a href="../public/index.php?route=login" id="admin-button"><i class="fas fa-users-cog"></i></a>
+        <?php
+        }
+        ?>
     </div>
 </footer>
