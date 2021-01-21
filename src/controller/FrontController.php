@@ -30,12 +30,6 @@ class FrontController extends Controller
         ]);
     }
 
-    // // BOUTON ADMIN 
-    // public function admin()
-    // {
-    //     $this->view->render('login');
-    // }
-
     // REGISTER
     public function register(Parameter $post)
     {

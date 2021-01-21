@@ -14,6 +14,7 @@ class UserDAO extends DAO
         $user = new User();
         $user->setId($row['id']);
         $user->setUsername($row['username']);
+        $user->setPassword($row['password']);
         $user->setRegistrationDate($row['registrationDate']);
         $user->setIsActive($row['isActive']);
         return $user;
@@ -45,7 +46,7 @@ class UserDAO extends DAO
     {
         $this->checkUser($post);
         // $this->checkAdmin($isActive);
-        $sql = 'INSERT INTO user (username, password, registrationDate, isActive) VALUES (?, ?, NOW(), NULL)';
+        $sql = 'INSERT INTO user (username, password, registrationDate, isActive) VALUES (?, ?, NOW(), 0)';
         $this->createQuery($sql, [$post->get('username'), password_hash($post->get('password'), PASSWORD_BCRYPT)]);
     }
 
@@ -63,7 +64,7 @@ class UserDAO extends DAO
     // {
     //     $sql = 'SELECT isActive FROM user WHERE id=:id';
     //     $result = $this->createQuery($sql, ['isActive' => $isActive]);
-    //     if ($isActive === NULL) {
+    //     if ($isActive === 0) {
     //         return '<p>Votre compte n\'est pas activé.</p>';
     //     }
     // }

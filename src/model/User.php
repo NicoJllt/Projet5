@@ -18,11 +18,6 @@ class User
     /**
      * @var string
      */
-    private $mail;
-
-    /**
-     * @var string
-     */
     private $password;
 
     /**
@@ -65,22 +60,6 @@ class User
     public function setUsername($username)
     {
         $this->username = $username;
-    }
-
-    /**
-     * @return string
-     */
-    public function getMail()
-    {
-        return $this->mail;
-    }
-
-    /**
-     * @param string $mail
-     */
-    public function setMail($mail)
-    {
-        $this->mail = $mail;
     }
 
     /**
