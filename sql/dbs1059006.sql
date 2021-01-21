@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: db5001238059.hosting-data.io
--- Generation Time: Jan 18, 2021 at 04:38 PM
+-- Generation Time: Jan 21, 2021 at 01:18 PM
 -- Server version: 5.7.30-log
 -- PHP Version: 7.0.33-0+deb9u10
 
@@ -123,7 +123,6 @@ CREATE TABLE `setting` (
 CREATE TABLE `user` (
   `id` int(11) NOT NULL COMMENT 'ID utilisateur',
   `username` varchar(50) NOT NULL COMMENT 'Nom utilisateur',
-  `mail` varchar(50) NOT NULL COMMENT 'Mail utilisateur',
   `password` varchar(50) NOT NULL COMMENT 'Mot de passe utilisateur',
   `registrationDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Date d''inscription',
   `isActive` tinyint(1) DEFAULT '0' COMMENT 'Utilisateur actif'
@@ -133,9 +132,9 @@ CREATE TABLE `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `username`, `mail`, `password`, `registrationDate`, `isActive`) VALUES
-(1, 'Magali', 'magali@gmail.com', 'admin1', '2020-12-03 12:43:06', 1),
-(2, 'Don Pierre', 'donpierre@gmail.com', 'admin2', '2020-12-03 12:44:01', 1);
+INSERT INTO `user` (`id`, `username`, `password`, `registrationDate`, `isActive`) VALUES
+(1, 'Magali', '$2y$10$FEbJzMV5xJZ/Zf12nKPJ9.nYuIZ..DvoPMewmeI3r9Y', '2020-12-03 12:43:06', 1),
+(2, 'Don-pierre', '$2y$10$7u9pBE3.HZgRxZKcJej0geZh8PSVUCaaypE4BYny1Xj', '2021-01-18 18:12:30', 1);
 
 --
 -- Indexes for dumped tables
@@ -160,8 +159,7 @@ ALTER TABLE `pizza`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `username_login` (`username`),
-  ADD UNIQUE KEY `mail_login` (`mail`);
+  ADD UNIQUE KEY `username_login` (`username`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -183,7 +181,7 @@ ALTER TABLE `pizza`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID utilisateur', AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID utilisateur', AUTO_INCREMENT=15;
 
 --
 -- Constraints for dumped tables
