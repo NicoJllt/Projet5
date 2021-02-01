@@ -55,19 +55,42 @@ class FrontController extends Controller
     public function login(Parameter $post)
     {
         if ($post->get('submit')) {
-            $result = $this->userDAO->login($post);
-            if ($result && $result['isPasswordValid']) {
-                $this->session->setFlashMessage('login', 'Vous êtes maintenant connecté');
-                $this->session->set('user_id', $result['id']);
-                $this->session->set('username', $result['username']);
-                return header('Location: ../public/index.php');
-            } else {
+            $user = $this->userDAO->login($post);
+            if (!$user || !password_verify($post->get('password'), $user->getPassword())) {
                 $this->session->setFlashMessage('error_login', 'Le nom d\'utilisateur ou le mot de passe sont incorrects');
                 return $this->view->render('login', [
                     'post' => $post
                 ]);
+            } else if (!$user->getIsActive()) {
+                $this->session->setFlashMessage('error_login', "Cet utilisateur n'est pas actif. Contactez le Webmaster.");
+                return $this->view->render('login', [
+                    'post' => $post
+                ]);
             }
+            $this->session->setFlashMessage('login', 'Vous êtes maintenant connecté');
+            $this->session->set('user_id', $user->getId());
+            $this->session->set('username', $user->getUsername());
+            return header('Location: ../public/index.php');
         }
         return $this->view->render('login');
     }
+
+    // public function login(Parameter $post)
+    // {
+    //     if ($post->get('submit')) {
+    //         $result = $this->userDAO->login($post);
+    //         if ($result && $result['isPasswordValid']) {
+    //             $this->session->setFlashMessage('login', 'Vous êtes maintenant connecté');
+    //             $this->session->set('user_id', $result['id']);
+    //             $this->session->set('username', $result['username']);
+    //             return header('Location: ../public/index.php');
+    //         } else {
+    //             $this->session->setFlashMessage('error_login', 'Le nom d\'utilisateur ou le mot de passe sont incorrects');
+    //             return $this->view->render('login', [
+    //                 'post' => $post
+    //             ]);
+    //         }
+    //     }
+    //     return $this->view->render('login');
+    // }
 }

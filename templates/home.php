@@ -40,8 +40,8 @@
         <?php
         if ($this->session->get('username')) {
         ?>
-            <a href="../public/index.php?route=administration" class="admin-nav">Administration</a>
-            <a href="../public/index.php?route=logout" class="logout-nav">Déconnexion</a>
+            <a href="../public/index.php?route=administration" id="admin-nav">Administration</a>
+            <a href="../public/index.php?route=logout" id="logout-nav">Déconnexion</a>
         <?php
         } else {
         ?>

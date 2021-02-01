@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: db5001238059.hosting-data.io
--- Generation Time: Jan 21, 2021 at 01:18 PM
+-- Generation Time: Feb 01, 2021 at 11:16 AM
 -- Server version: 5.7.30-log
 -- PHP Version: 7.0.33-0+deb9u10
 
@@ -123,9 +123,9 @@ CREATE TABLE `setting` (
 CREATE TABLE `user` (
   `id` int(11) NOT NULL COMMENT 'ID utilisateur',
   `username` varchar(50) NOT NULL COMMENT 'Nom utilisateur',
-  `password` varchar(50) NOT NULL COMMENT 'Mot de passe utilisateur',
+  `password` varchar(100) NOT NULL COMMENT 'Mot de passe utilisateur',
   `registrationDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Date d''inscription',
-  `isActive` tinyint(1) DEFAULT '0' COMMENT 'Utilisateur actif'
+  `isActive` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'Utilisateur actif'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -133,8 +133,9 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `username`, `password`, `registrationDate`, `isActive`) VALUES
-(1, 'Magali', '$2y$10$FEbJzMV5xJZ/Zf12nKPJ9.nYuIZ..DvoPMewmeI3r9Y', '2020-12-03 12:43:06', 1),
-(2, 'Don-pierre', '$2y$10$7u9pBE3.HZgRxZKcJej0geZh8PSVUCaaypE4BYny1Xj', '2021-01-18 18:12:30', 1);
+(1, 'Magali', '$2y$10$rq8jqzMvwrN3xvOJur5PROCgRi8v9FeZ3oWx/wX/5TL73z18YQgru', '2020-12-03 12:43:06', 1),
+(2, 'Don-Pierre', '$2y$10$oPEu2eSKRG4NMMp0KkrFhuPYNrW0prLTWTcl1MjkX4WOUCNnGrCMq', '2021-01-21 16:07:27', 1),
+(19, 'nico', '$2y$10$kZDiR0TC8xRcAJeJcMPzo.J4DJ6uDOezm2AnGrw3qqlQW8yKNCSje', '2021-01-26 11:20:21', 1);
 
 --
 -- Indexes for dumped tables
@@ -181,7 +182,7 @@ ALTER TABLE `pizza`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID utilisateur', AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID utilisateur', AUTO_INCREMENT=20;
 
 --
 -- Constraints for dumped tables

@@ -43,6 +43,14 @@ class Router
                     $this->backController->logout();
                 } elseif ($route === 'administration') {
                     $this->backController->administration();
+                } elseif ($route === 'addPizza') {
+                    $this->backController->addPizza($this->request->getPost());
+                } elseif ($route === 'editPizza') {
+                    $this->backController->editPizza($this->request->getPost(), $this->request->getGet()->get('id'));
+                } elseif ($route === 'deletePizza') {
+                    $this->backController->deletePizza($this->request->getGet()->get('id'));
+                } elseif ($route === 'deleteAccount') {
+                    $this->backController->deleteAccount();
                 } else {
                     $this->errorController->errorNotFound();
                 }

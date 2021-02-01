@@ -35,25 +35,84 @@ class BackController extends Controller
     {
         if ($this->checkLoggedIn()) {
             $pizzas = $this->pizzaDAO->getPizzas();
-            // $elements = $this->otherDAO->getElements();
+            $elements = $this->otherDAO->getElements();
             // $parameters = $this->settingDAO->getParameters();
             $users = $this->userDAO->getUsers();
 
             return $this->view->render('administration', [
                 'pizzas' => $pizzas,
-                // 'elements' => $elements,
+                'elements' => $elements,
                 // 'paramaters' => $parameters,
                 'users' => $users
             ]);
         }
     }
 
-    // MENU
+    // PAGE MENU - AJOUTER PIZZA
+    public function addPizza(Parameter $post)
+    {
+        if ($this->checkLoggedIn()) {
+            if ($post->get('submit')) {
+                $errors = $this->validation->validate($post, 'Menu');
+                if (!$errors) {
+                    $this->pizzaDAO->addPizza($post, $this->session->get('user_id'));
+                    $this->session->setFlashMessage('add_element', 'L\'élément a bien été ajouté');
+                    return header('Location: ../public/index.php?route=administration');
+                }
+                return $this->view->render('add_pizza', [
+                    'post' => $post,
+                    'errors' => $errors
+                ]);
+            }
+            return $this->view->render('add_pizza');
+        }
+    }
+
+    // PAGE MENU - MODIFIER PIZZA
+    public function editPizza(Parameter $post, $id)
+    {
+        if ($this->checkLoggedIn()) {
+            if ($post->get('submit')) {
+                $errors = $this->validation->validate($post, 'Menu');
+                if (!$errors) {
+                    $this->pizzaDAO->editPizza($post, $id, $this->session->get('user_id'));
+                    $this->session->setFlashMessage('edit_element', 'L\'élément a bien été mis à jour');
+                    return header('Location: ../public/index.php?route=administration');
+                }
+                return $this->view->render('edit_pizza', [
+                    'post' => $post,
+                    'errors' => $errors
+                ]);
+            }
+            $pizza = $this->pizzaDAO->getPizza($id);
+            $post->set('id', $pizza->getElementId());
+            $post->set('name', $pizza->getName());
+            $post->set('description', $pizza->getDescription());
+            $post->set('smallPrice', $pizza->getSmallPrice());
+            $post->set('bigPrice', $pizza->getBigPrice());
+            $this->view->render('edit_pizza', [
+                'post' => $post
+            ]);
+        }
+    }
+
+    // PAGE MENU - SUPPRIMER PIZZA
+    public function deletePizza($id)
+    {
+        if ($this->checkLoggedIn()) {
+            $this->otherDAO->deleteElement($id);
+            $this->session->setFlashMessage('delete_element', 'L\'élément a bien été supprimé');
+            return header('Location: ../public/index.php?route=administration');
+        }
+    }
+
+    // PAGE MENU - AUTRES
+    // PAGE MENU - AJOUTER ELEMENT
     public function addElement(Parameter $post)
     {
         if ($this->checkLoggedIn()) {
             if ($post->get('submit')) {
-                $errors = $this->validation->validate($post, 'Other');
+                $errors = $this->validation->validate($post, 'Menu');
                 if (!$errors) {
                     $this->otherDAO->addElement($post, $this->session->get('user_id'));
                     $this->session->setFlashMessage('add_element', 'L\'élément a bien été ajouté');
@@ -68,14 +127,14 @@ class BackController extends Controller
         }
     }
 
-    // MODIFIER ELEMENT
-    public function editElement(Parameter $post, $elementId)
+    // PAGE MENU - MODIFIER ELEMENT
+    public function editElement(Parameter $post, $id)
     {
         if ($this->checkLoggedIn()) {
             if ($post->get('submit')) {
-                $errors = $this->validation->validate($post, 'Other');
+                $errors = $this->validation->validate($post, 'Menu');
                 if (!$errors) {
-                    $this->otherDAO->editElement($post, $elementId, $this->session->get('user_id'));
+                    $this->otherDAO->editElement($post, $id, $this->session->get('user_id'));
                     $this->session->setFlashMessage('edit_element', 'L\'élément a bien été mis à jour');
                     return header('Location: ../public/index.php?route=administration');
                 }
@@ -84,29 +143,28 @@ class BackController extends Controller
                     'errors' => $errors
                 ]);
             }
-            $element = $this->otherDAO->getElement($elementId);
-            $post->set('elementId', $element->getElementId());
-            $post->set('name', $element->getName());
+            $element = $this->otherDAO->getElement($id);
+            $post->set('id', $element->getElementId());
             $post->set('description', $element->getDescription());
-            $post->set('smallPrice', $element->getSmallPrice());
-            $post->set('bigPrice', $element->getBigPrice());
+            $post->set('price', $element->getPrice());
+            $post->set('category', $element->getCategory());
             $this->view->render('edit_episode', [
                 'post' => $post
             ]);
         }
     }
 
-    // SUPPRIMER ELEMENT
-    public function deleteElement($elementId)
+    // PAGE MENU - SUPPRIMER ELEMENT
+    public function deleteElement($id)
     {
         if ($this->checkLoggedIn()) {
-            $this->otherDAO->deleteElement($elementId);
+            $this->otherDAO->deleteElement($id);
             $this->session->setFlashMessage('delete_element', 'L\'élément a bien été supprimé');
             return header('Location: ../public/index.php?route=administration');
         }
     }
 
-    // AJOUTER ELEMENT PAGE CONTACT
+    // PAGE CONTACT - AJOUTER ELEMENT
     public function addSetting(Parameter $post)
     {
         if ($this->checkLoggedIn()) {
@@ -126,7 +184,7 @@ class BackController extends Controller
         }
     }
 
-    // MODIFIER ELEMENT PAGE CONTACT
+    // PAGE CONTACT - MODIFIER ELEMENT
     public function editSetting(Parameter $post, $settingId)
     {
         if ($this->checkLoggedIn()) {
@@ -154,7 +212,7 @@ class BackController extends Controller
         }
     }
 
-    // SUPPRIMER ELEMENT PAGE CONTACT
+    // PAGE CONTACT - SUPPRIMER ELEMENT
     public function deleteSetting($settingId)
     {
         if ($this->checkLoggedIn()) {
@@ -194,10 +252,6 @@ class BackController extends Controller
     // Suppression d'un compte par un Admin
     public function deleteAccount()
     {
-        if ($this->session->get('role') === 'admin') {
-            $this->session->setFlashMessage('no_delete_account', 'Vous n\'êtes pas autorisé à supprimer un compte administrateur.');
-            return header('Location: ../public/index.php?route=profile');
-        }
         if ($this->checkLoggedIn()) {
             $this->userDAO->deleteAccount($this->session->get('username'));
             $this->logoutOrDelete('delete_account');

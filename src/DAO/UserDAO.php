@@ -22,7 +22,7 @@ class UserDAO extends DAO
 
     public function getUsers()
     {
-        $sql = 'SELECT id, username, mail, registrationDate FROM user ORDER BY id ASC';
+        $sql = 'SELECT id, username, registrationDate, isActive FROM user ORDER BY id ASC';
         $result = $this->createQuery($sql);
         $users = [];
         foreach ($result as $row) {
@@ -35,7 +35,7 @@ class UserDAO extends DAO
 
     public function getUser($id)
     {
-        $sql = 'SELECT id, username, mail, registrationDate FROM user WHERE id=:id';
+        $sql = 'SELECT id, username, registrationDate, isActive FROM user WHERE id=:id';
         $result = $this->createQuery($sql, ['id' => $id]);
         $user = $this->buildObject($result->fetch());
         $result->closeCursor();
@@ -69,16 +69,25 @@ class UserDAO extends DAO
     //     }
     // }
 
+    // public function login(Parameter $post)
+    // {
+    //     $sql = 'SELECT * FROM user WHERE username = ?';
+    //     $data = $this->createQuery($sql, [$post->get('username')]);
+    //     $result = $data->fetch();
+    //     $isPasswordValid = !empty($result) && password_verify($post->get('password'), $result['password']);
+    //     return [
+    //         'result' => $result,
+    //         'isPasswordValid' => $isPasswordValid
+    //     ];
+    // }
+
     public function login(Parameter $post)
     {
         $sql = 'SELECT * FROM user WHERE username = ?';
         $data = $this->createQuery($sql, [$post->get('username')]);
-        $result = $data->fetch();
-        $isPasswordValid = !empty($result) && password_verify($post->get('password'), $result['password']);
-        return [
-            'result' => $result,
-            'isPasswordValid' => $isPasswordValid
-        ];
+        $user = $this->buildObject($data->fetch());
+        $data->closeCursor();
+        return $user;
     }
 
     public function updatePassword(Parameter $post, $username)

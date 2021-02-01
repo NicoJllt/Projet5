@@ -356,7 +356,6 @@ body {
 
 .click-nav {
     position: relative;
-    text-decoration: none;
     color: black;
     padding: 10px 5px;
 
@@ -536,6 +535,16 @@ body {
     font-size: 30px;
 }
 
+#admin-nav, #logout-nav {
+    color: black;
+    padding: 10px 5px;
+    text-decoration: none;
+    list-style-type: none;
+    border: 2px solid black;
+    font-size: 15px;
+    background-color: rgba(211, 211, 211, 0.5);
+}
+
 /* ACCUEIL BACKGROUND ICONE + GALLERIE PHOTOS */
 
 #home-bloc {
@@ -582,7 +591,7 @@ body {
     }
 }
 
-/* Logo papacionu fond animation */
+/* LOGO PAPACIONU FOND ANIMATION PAGE ACCUEIL */
 .background-icon {
     position: relative;
     left: 50%;
@@ -620,6 +629,7 @@ body {
     display: none;
 }
 
+/* GALLERIE PHOTO PAGE ACCUEIL */
 .gallery {
     position: relative;
     width: 1000px;
@@ -729,7 +739,51 @@ ul.gallery li a.pizza-picture-home12 {
 }
 */
 
-/* Dimensions écrans/fenêtres */
+/* PAGE ADMINISTRATION */
+#bloc-admin {
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 2px solid red;
+    margin: 110px 20px 20px 20px;
+}
+
+#bloc-admin h1 {
+    text-align: center;
+    font-size: 50px;
+}
+
+#bloc-admin h2 {
+    margin: 10px;
+    font-size: 30px;
+}
+
+#bloc-admin table {
+    border: 1px solid black;
+    position: relative;
+    margin: 20px 0;
+    line-height: 1.5em;
+    width: 100%;
+}
+
+/* #pizza-table-admin, #other-table-admin, #user-table-admin {
+    margin: 0;
+    width: 100%;
+} */
+
+#pizza-table-admin tr:first-child, #other-table-admin tr:first-child, #user-table-admin tr:first-child {
+    font-weight: bold;
+}
+
+/* ERREURS PAGES */
+.error-pages {
+    position: relative;
+    display: block;
+    text-align: center;
+    margin: 200px;
+    padding: 100px;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+/* DIMENSIONS ECRANS/FENETRES - RESPONSIVE DESIGN */
 
 @media all and (max-width: 1050px) {
 
