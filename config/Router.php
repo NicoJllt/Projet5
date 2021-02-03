@@ -49,8 +49,16 @@ class Router
                     $this->backController->editPizza($this->request->getPost(), $this->request->getGet()->get('id'));
                 } elseif ($route === 'deletePizza') {
                     $this->backController->deletePizza($this->request->getGet()->get('id'));
-                } elseif ($route === 'deleteAccount') {
-                    $this->backController->deleteAccount();
+                } elseif ($route === 'addElement') {
+                    $this->backController->addElement($this->request->getPost());
+                } elseif ($route === 'editElement') {
+                    $this->backController->editElement($this->request->getPost(), $this->request->getGet()->get('id'));
+                } elseif ($route === 'deleteElement') {
+                    $this->backController->deleteElement($this->request->getGet()->get('id'));
+                } elseif ($route === 'deleteUser') {
+                    $this->backController->deleteUser($this->request->getGet()->get('id'));
+                } elseif ($route === 'updatePassword') {
+                    $this->backController->updatePassword($this->request->getPost());
                 } else {
                     $this->errorController->errorNotFound();
                 }

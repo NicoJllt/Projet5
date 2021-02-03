@@ -36,9 +36,19 @@ class PizzaDAO extends DAO
         return $pizzas;
     }
 
+        // Récupération d'une pizza en fonction de son ID
+        public function getPizza($id)
+        {
+            $sql = 'SELECT id, name, description, priceSmall, priceBig FROM pizza WHERE id = ?';
+            $result = $this->createQuery($sql, [$id]);
+            $pizza = $result->fetch();
+            $result->closeCursor();
+            return $this->buildObject($pizza);
+        }
+    
     public function addPizza(Parameter $post, $idAdmin)
     {
-        $sql = 'INSERT INTO pizza (name, description, priceSmall, priceBig, idAdmin) VALUES (?, ?, ?, ?)';
+        $sql = 'INSERT INTO pizza (name, description, priceSmall, priceBig, idAdmin) VALUES (?, ?, ?, ?, ?)';
         $this->createQuery($sql, [
             $post->get('name'),
             $post->get('description'),
@@ -50,7 +60,7 @@ class PizzaDAO extends DAO
 
     public function editPizza(Parameter $post, $id, $idAdmin)
     {
-        $sql = 'UPDATE pizza SET name=:name, description=:description, priceSmall=:priceSmall, priceBig=:priceBig, idAdmin=:idAdmin  WHERE id=:id';
+        $sql = 'UPDATE pizza SET name=:name, description=:description, priceSmall=:priceSmall, priceBig=:priceBig, idAdmin=:idAdmin WHERE id=:id';
         $this->createQuery($sql, [
             'name' => $post->get('name'),
             'description' => $post->get('description'),

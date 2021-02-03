@@ -56,7 +56,7 @@ class BackController extends Controller
                 $errors = $this->validation->validate($post, 'Menu');
                 if (!$errors) {
                     $this->pizzaDAO->addPizza($post, $this->session->get('user_id'));
-                    $this->session->setFlashMessage('add_element', 'L\'élément a bien été ajouté');
+                    $this->session->setFlashMessage('add_pizza', 'La pizza a bien été ajoutée');
                     return header('Location: ../public/index.php?route=administration');
                 }
                 return $this->view->render('add_pizza', [
@@ -76,7 +76,7 @@ class BackController extends Controller
                 $errors = $this->validation->validate($post, 'Menu');
                 if (!$errors) {
                     $this->pizzaDAO->editPizza($post, $id, $this->session->get('user_id'));
-                    $this->session->setFlashMessage('edit_element', 'L\'élément a bien été mis à jour');
+                    $this->session->setFlashMessage('edit_pizza', 'La pizza a bien été mise à jour');
                     return header('Location: ../public/index.php?route=administration');
                 }
                 return $this->view->render('edit_pizza', [
@@ -85,11 +85,11 @@ class BackController extends Controller
                 ]);
             }
             $pizza = $this->pizzaDAO->getPizza($id);
-            $post->set('id', $pizza->getElementId());
+            $post->set('id', $pizza->getId());
             $post->set('name', $pizza->getName());
             $post->set('description', $pizza->getDescription());
-            $post->set('smallPrice', $pizza->getSmallPrice());
-            $post->set('bigPrice', $pizza->getBigPrice());
+            $post->set('priceSmall', $pizza->getPriceSmall());
+            $post->set('priceBig', $pizza->getPriceBig());
             $this->view->render('edit_pizza', [
                 'post' => $post
             ]);
@@ -100,8 +100,8 @@ class BackController extends Controller
     public function deletePizza($id)
     {
         if ($this->checkLoggedIn()) {
-            $this->otherDAO->deleteElement($id);
-            $this->session->setFlashMessage('delete_element', 'L\'élément a bien été supprimé');
+            $this->pizzaDAO->deletePizza($id);
+            $this->session->setFlashMessage('delete_pizza', 'La pizza a bien été supprimée');
             return header('Location: ../public/index.php?route=administration');
         }
     }
@@ -144,7 +144,7 @@ class BackController extends Controller
                 ]);
             }
             $element = $this->otherDAO->getElement($id);
-            $post->set('id', $element->getElementId());
+            $post->set('id', $element->getId());
             $post->set('description', $element->getDescription());
             $post->set('price', $element->getPrice());
             $post->set('category', $element->getCategory());
@@ -231,7 +231,7 @@ class BackController extends Controller
                 if (!$errors) {
                     $this->userDAO->updatePassword($post, $this->session->get('username'));
                     $this->session->setFlashMessage('update_password', 'Le mot de passe a été mis à jour');
-                    return header('Location: ../public/index.php?route=profile');
+                    return header('Location: ../public/index.php?route=administration');
                 }
                 $this->session->setFlashMessage('update_password_failed', 'Le mot de passe doit contenir au minimum 8 caractères');
                 return $this->view->render('update_password', [
@@ -249,7 +249,7 @@ class BackController extends Controller
             $this->logoutOrDelete('logout');
         }
     }
-    // Suppression d'un compte par un Admin
+    // Suppression d'un compte par son utilisateur
     public function deleteAccount()
     {
         if ($this->checkLoggedIn()) {
@@ -258,20 +258,16 @@ class BackController extends Controller
         }
     }
 
-    // Suppression de son propre compte par un utilisateur
-    public function deleteUser($userId)
+    // Suppression d'un compte par un Admin
+    public function deleteUser($id)
     {
         if ($this->checkLoggedIn()) {
-            $toDelete = $this->userDAO->getUser($userId);
-            if ($toDelete->getRoleName() === 'admin') {
-                $this->session->setFlashMessage('delete_user', 'Vous n\'êtes pas autorisé à supprimer un administrateur.');
-                return header('Location: ../public/index.php?route=administration');
-            }
-            $this->userDAO->deleteUser($userId);
+            $this->userDAO->deleteUser($id);
             $this->session->setFlashMessage('delete_user', 'L\'utilisateur a bien été supprimé.');
             header('Location: ../public/index.php?route=administration');
         }
     }
+
     // Déconnexion et/ou suppression de compte
     private function logoutOrDelete($param)
     {

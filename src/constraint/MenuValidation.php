@@ -30,11 +30,14 @@ class MenuValidation extends Validation
         } elseif ($name === 'description') {
             $error = $this->checkDescription($name, $value);
             $this->addError($name, $error);
-        } elseif ($name === 'smallPrice') {
-            $error = $this->checkSmallPrice($name, $value);
+        } elseif ($name === 'priceSmall') {
+            $error = $this->checkPriceSmall($name, $value);
             $this->addError($name, $error);
-        } elseif ($name === 'bigPrice') {
-            $error = $this->checkBigPrice($name, $value);
+        } elseif ($name === 'priceBig') {
+            $error = $this->checkPriceBig($name, $value);
+            $this->addError($name, $error);
+        } elseif ($name === 'price') {
+            $error = $this->checkPrice($name, $value);
             $this->addError($name, $error);
         }
     }
@@ -71,29 +74,42 @@ class MenuValidation extends Validation
         }
     }
 
-    private function checkSmallPrice($name, $value)
+    private function checkPriceSmall($name, $value)
     {
         if ($this->constraint->notBlank($name, $value)) {
-            return $this->constraint->notBlank('PetitPrix', $value);
+            return $this->constraint->notBlank('Prix demi-lune', $value);
         }
         if ($this->constraint->minLength($name, $value, 1)) {
-            return $this->constraint->minLength('PetitPrix', $value, 1);
+            return $this->constraint->minLength('Prix demi-lune', $value, 1);
         }
         if ($this->constraint->maxLength($name, $value, 2)) {
-            return $this->constraint->maxLength('PetitPrix', $value, 2);
+            return $this->constraint->maxLength('Prix demi-lune', $value, 2);
         }
     }
 
-    private function checkBigPrice($name, $value)
+    private function checkPriceBig($name, $value)
     {
         if ($this->constraint->notBlank($name, $value)) {
-            return $this->constraint->notBlank('GrandPrix', $value);
+            return $this->constraint->notBlank('Prix entière', $value);
         }
         if ($this->constraint->minLength($name, $value, 1)) {
-            return $this->constraint->minLength('GrandPrix', $value, 1);
+            return $this->constraint->minLength('Prix entière', $value, 1);
         }
         if ($this->constraint->maxLength($name, $value, 2)) {
-            return $this->constraint->maxLength('GrandPrix', $value, 2);
+            return $this->constraint->maxLength('Prix entière', $value, 2);
+        }
+    }
+
+    private function checkPrice($name, $value)
+    {
+        if ($this->constraint->notBlank($name, $value)) {
+            return $this->constraint->notBlank('Prix', $value);
+        }
+        if ($this->constraint->minLength($name, $value, 1)) {
+            return $this->constraint->minLength('Prix', $value, 1);
+        }
+        if ($this->constraint->maxLength($name, $value, 2)) {
+            return $this->constraint->maxLength('Prix', $value, 2);
         }
     }
 }

@@ -36,6 +36,17 @@ class OtherDAO extends DAO
         return $elements;
     }
 
+        // Récupération d'un épisode en fonction de son ID
+        public function getElement($id)
+        {
+            $sql = 'SELECT id, description, price, category FROM other WHERE id = ?';
+            $result = $this->createQuery($sql, [$id]);
+            $element = $result->fetch();
+            $result->closeCursor();
+            return $this->buildObject($element);
+        }
+    
+
     public function addElement(Parameter $post, $idAdmin)
     {
         $sql = 'INSERT INTO other (description, price, category, idAdmin) VALUES (?, ?, ?, ?)';

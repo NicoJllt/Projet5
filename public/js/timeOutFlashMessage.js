@@ -4,4 +4,4 @@ setTimeout(function() {
     if (div && div[0]) {
         div[0].style.display='none';
     }
-}, 6000)
+}, 5000)

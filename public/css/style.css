@@ -454,7 +454,7 @@ body {
     overflow: hidden;
 }
 
-/* REGISTER & LOGIN */
+/* REGISTER & LOGIN & PASSWORD FORMS */
 #register-section, #login-section {
     display: block;
     position: relative;
@@ -472,17 +472,79 @@ body {
     margin-bottom: 20px;
 }
 
-#pseudo, #password {
+.pseudo-input, .password-input {
     width: 200px;
 }
 
 .submit-form {
-    padding: 10px;
-    border: 1px solid black;
+    position: relative;
+    color: black;
     font-weight: bold;
-    margin-top: 10px;
+    text-align: center;
+    font-size: 12px;
+    margin: 10px;
+    padding: 10px;
+    border: none;
+    border-radius: 2px;
+    box-shadow: 1px 1px 3px #aaa;
+    /* border: 1px solid black; */
     text-transform: uppercase;
     cursor: pointer;
+}
+
+.submit-form:hover {
+    background-color: rgba(255, 255, 255, 0.6);
+}
+
+/* PIZZA FORM - ADD EDIT DELETE */
+#pizza-form, #element-form {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    margin: 150px 200px 50px 200px;
+    border: 1px solid red;
+    text-align: center;
+    line-height: 2em;
+}
+
+#pizza-form h1, #element-form h1 {
+    text-align: center;
+    text-transform: uppercase;
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 2px solid black;
+    margin: 20px auto;
+    padding: 20px;
+    width: 600px;
+    user-select: none;
+}
+
+#pizza-form label, #element-form label {
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+#description-pizza-input, #description-element-input {
+    width: 600px;
+    height: 50px;
+}
+
+#small-price-input, #big-price-input, #element-price-input {
+    width: 50px;
+}
+
+/* UPDATE PASSWORD FORM */
+#update-password-bloc {
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid red;
+    width: 400px;
+    padding: 20px;
+    margin: 200px auto 0 auto;
+    text-align: center;
+    line-height: 2em;
+    overflow: hidden;
+}
+
+#update-password-bloc label, #update-password-bloc p {
+    font-weight: bold;
 }
 
 /* FLASH MESSAGES */
@@ -500,8 +562,8 @@ body {
     bottom: 0;
     right: 0;
 
-    -webkit-animation: fadeinout 4s linear forwards;
-    animation: fadeinout 4s linear forwards;
+    -webkit-animation: fadeinout 3s linear forwards;
+    animation: fadeinout 3s linear forwards;
 }
 
 @-webkit-keyframes fadeinout {
@@ -537,12 +599,14 @@ body {
 
 #admin-nav, #logout-nav {
     color: black;
+    background-color: rgba(211, 211, 211, 0.5);
+    border: 2px solid red;
+    font-size: 15px;
+    font-weight: bold;
     padding: 10px 5px;
     text-decoration: none;
     list-style-type: none;
-    border: 2px solid black;
-    font-size: 15px;
-    background-color: rgba(211, 211, 211, 0.5);
+    text-transform: uppercase;
 }
 
 /* ACCUEIL BACKGROUND ICONE + GALLERIE PHOTOS */
@@ -742,32 +806,99 @@ ul.gallery li a.pizza-picture-home12 {
 /* PAGE ADMINISTRATION */
 #bloc-admin {
     background-color: rgba(255, 255, 255, 0.8);
-    border: 2px solid red;
+    border: 1px solid red;
     margin: 110px 20px 20px 20px;
+    text-align: center;
+    padding: 10px;
 }
 
 #bloc-admin h1 {
     text-align: center;
+    text-transform: uppercase;
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 2px solid black;
+    margin: 20px auto;
+    padding: 20px;
     font-size: 50px;
+    width: 800px;
+    user-select: none;
 }
 
 #bloc-admin h2 {
     margin: 10px;
-    font-size: 30px;
+    font-size: 40px;
 }
 
 #bloc-admin table {
-    border: 1px solid black;
     position: relative;
     margin: 20px 0;
     line-height: 1.5em;
     width: 100%;
 }
 
+#bloc-admin td:not(:last-child) {
+    border: 1px solid black;
+    text-align: center;
+}
+
+#bloc-admin td:last-child {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+}
+
+.action-admin {
+    color: red;
+    border: 1px solid black;
+    /* background-color: white; */
+    padding: 13px;
+}
+
+#bloc-admin a {
+    color: black;
+    font-weight: bold;
+    list-style-type: none;
+    text-decoration: none;
+    margin: 10px;
+    padding: 10px;
+    line-height: 3em;
+    text-align: center;
+    font-size: 12px;
+    border: 1px solid black;
+    border-radius: 2px;
+    box-shadow: 1px 1px 3px #aaa;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+#bloc-admin a:hover {
+    background-color: grey;
+}
+
+.add-element-button a {
+    background-color: #8dff74;
+}
+
+.edit-button {
+    background-color: #4192ff;
+}
+
+.delete-button {
+    background-color: #Ff4144;
+}
+
 /* #pizza-table-admin, #other-table-admin, #user-table-admin {
     margin: 0;
     width: 100%;
 } */
+
+#session-name {
+    font-weight: bold;
+    color: red;
+    margin: 0 0 15px 15px;
+}
 
 #pizza-table-admin tr:first-child, #other-table-admin tr:first-child, #user-table-admin tr:first-child {
     font-weight: bold;

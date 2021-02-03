@@ -9,7 +9,7 @@
         <p><?= $this->session->show('edit_element'); ?></p>
         <p><?= $this->session->show('delete_element'); ?></p>
         <p><?= $this->session->show('delete_user'); ?></p>
-        <p><?= $this->session->show('delete_account'); ?></p>
+        <p><?= $this->session->show('update_password'); ?></p>
     </div>
 <?php } ?>
 
@@ -26,7 +26,7 @@
             <td>Description</td>
             <td>Prix demi-lune (1 personne)</td>
             <td>Prix entière (2 personnes)</td>
-            <td>Actions</td>
+            <td class="action-admin">ACTION</td>
         </tr>
         <?php
         foreach ($pizzas as $pizza) {
@@ -38,8 +38,8 @@
                 <td><?= htmlspecialchars($pizza->getPriceSmall()); ?></td>
                 <td><?= htmlspecialchars($pizza->getPriceBig()); ?></td>
                 <td>
-                    <a href="../public/index.php?route=editPizza&id=<?= $pizza->getId(); ?>">Modifier</a>
-                    <a href="../public/index.php?route=deletePizza&id=<?= $pizza->getId(); ?>">Supprimer</a>
+                    <a class="edit-button" href="../public/index.php?route=editPizza&id=<?= $pizza->getId(); ?>">Modifier</a>
+                    <a class="delete-button" href="../public/index.php?route=deletePizza&id=<?= $pizza->getId(); ?>">Supprimer</a>
                 </td>
             </tr>
         <?php
@@ -56,7 +56,8 @@
             <td>Id</td>
             <td>Description</td>
             <td>Prix</td>
-            <td>Actions</td>
+            <td>Catégorie</td>
+            <td class="action-admin">ACTION</td>
         </tr>
         <?php
         foreach ($elements as $other) {
@@ -67,8 +68,8 @@
                 <td><?= htmlspecialchars($other->getPrice()); ?></td>
                 <td><?= htmlspecialchars($other->getCategory()); ?></td>
                 <td>
-                    <a href="../public/index.php?route=editElement&id=<?= $other->getId(); ?>">Modifier</a>
-                    <a href="../public/index.php?route=deleteElement&id=<?= $other->getId(); ?>">Supprimer</a>
+                    <a class="edit-button" href="../public/index.php?route=editElement&id=<?= $other->getId(); ?>">Modifier</a>
+                    <a class="delete-button" href="../public/index.php?route=deleteElement&id=<?= $other->getId(); ?>">Supprimer</a>
                 </td>
             </tr>
         <?php
@@ -78,10 +79,13 @@
 
     <h2>UTILISATEURS</h2>
     <table id="user-table-admin">
+        <p id="session-name">SESSION ACTIVE : <?= $this->session->get('username'); ?></p>
+        <a href="../public/index.php?route=updatePassword" id="edit-password">Modifier mon mot de passe</a>
         <tr>
             <td>Id</td>
             <td>Nom d'utilisateur</td>
-            <td>Actions</td>
+            <td>Date d'inscription</td>
+            <td class="action-admin">ACTION</td>
         </tr>
         <?php
         foreach ($users as $user) {
@@ -89,11 +93,12 @@
             <tr>
                 <td><?= htmlspecialchars($user->getId()); ?></td>
                 <td><?= htmlspecialchars($user->getUsername()); ?></td>
+                <td>Créé le : <?= htmlspecialchars($user->getRegistrationDate()); ?></td>
                 <td>
                     <?php
                     if ($user->getIsActive() != 1) {
                     ?>
-                        <a href="../public/index.php?route=deleteAccount&id=<?= $user->getId(); ?>">Supprimer</a>
+                        <a href="../public/index.php?route=deleteUser&id=<?= $user->getId(); ?>">Supprimer</a>
                     <?php } else {
                     ?>
                         <p>Suppression impossible</p>
