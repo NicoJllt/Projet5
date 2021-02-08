@@ -39,7 +39,7 @@ class OtherDAO extends DAO
         // Récupération d'un épisode en fonction de son ID
         public function getElement($id)
         {
-            $sql = 'SELECT id, description, price, category FROM other WHERE id = ?';
+            $sql = 'SELECT id, description, price, category, idAdmin FROM other WHERE id = ?';
             $result = $this->createQuery($sql, [$id]);
             $element = $result->fetch();
             $result->closeCursor();

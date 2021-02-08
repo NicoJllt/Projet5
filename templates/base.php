@@ -31,5 +31,6 @@
 
 <script type="text/javascript" src="../public/js/responsiveSummary.js"></script>
 <script type="text/javascript" src="../public/js/timeOutFlashMessage.js"></script>
+<script type="text/javascript" src="../public/js/showPassword.js"></script>
 
 </html>

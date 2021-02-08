@@ -39,7 +39,7 @@ class PizzaDAO extends DAO
         // Récupération d'une pizza en fonction de son ID
         public function getPizza($id)
         {
-            $sql = 'SELECT id, name, description, priceSmall, priceBig FROM pizza WHERE id = ?';
+            $sql = 'SELECT id, name, description, priceSmall, priceBig, idAdmin FROM pizza WHERE id = ?';
             $result = $this->createQuery($sql, [$id]);
             $pizza = $result->fetch();
             $result->closeCursor();

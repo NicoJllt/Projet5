@@ -8,7 +8,9 @@
         <?= isset($errors['username']) ? $errors['username'] : ''; ?>
     </div>
     <label for="password">MOT DE PASSE</label><br>
-    <input type="password" class="password-input" name="password"><br>
+    <input type="password" class="password-input" id="show-password" name="password"><br>
+    <input type="checkbox" onclick="Afficher()"> Afficher le mot de passe<br>
+
     <div class="constraint-error">
         <?= isset($errors['password']) ? $errors['password'] : ''; ?>
     </div>
