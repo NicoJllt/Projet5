@@ -23,13 +23,15 @@ $submit = ($route === 'addElement') ? 'Enregistrer' : 'Mettre à jour';
     </div>
 
     <label for="category">Catégorie</label><br>
-    <select id="element-category-input" name="category" value="<?= isset($post) ? htmlspecialchars(($post->get('category'))) : '' ?>"><br>
-        <option valeur="Entrée">Entrée</option>
-        <option valeur="Dessert">Dessert</option>
-        <option valeur="Glace">Glace</option>
-        <option valeur="Vin">Vin</option>
-        <option valeur="Boisson">Boisson</option>
+    <select name="category" id="element-category-select">
+        <option value="">Choix :</option>
+        <option value="Entrée">Entrée</option>
+        <option value="Dessert">Dessert</option>
+        <option value="Glace">Glace</option>
+        <option value="Vin">Vin</option>
+        <option value="Boisson">Boisson</option>
     </select>
+
     <div class="constraint-error">
         <?= isset($errors['category']) ? $errors['category'] : '' ?>
     </div>

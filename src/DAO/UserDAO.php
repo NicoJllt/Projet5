@@ -54,7 +54,6 @@ class UserDAO extends DAO
     public function register(Parameter $post)
     {
         $this->checkUser($post);
-        // $this->checkAdmin($isActive);
         $sql = 'INSERT INTO user (username, password, registrationDate, isActive) VALUES (?, ?, NOW(), 0)';
         $this->createQuery($sql, [$post->get('username'), password_hash($post->get('password'), PASSWORD_BCRYPT)]);
     }
@@ -68,27 +67,6 @@ class UserDAO extends DAO
             return '<p>Le nom d\'utilisateur existe déjà</p>';
         }
     }
-
-    // public function checkAdmin($isActive)
-    // {
-    //     $sql = 'SELECT isActive FROM user WHERE id=:id';
-    //     $result = $this->createQuery($sql, ['isActive' => $isActive]);
-    //     if ($isActive === 0) {
-    //         return '<p>Votre compte n\'est pas activé.</p>';
-    //     }
-    // }
-
-    // public function login(Parameter $post)
-    // {
-    //     $sql = 'SELECT * FROM user WHERE username = ?';
-    //     $data = $this->createQuery($sql, [$post->get('username')]);
-    //     $result = $data->fetch();
-    //     $isPasswordValid = !empty($result) && password_verify($post->get('password'), $result['password']);
-    //     return [
-    //         'result' => $result,
-    //         'isPasswordValid' => $isPasswordValid
-    //     ];
-    // }
 
     public function updatePassword(Parameter $post, $username)
     {

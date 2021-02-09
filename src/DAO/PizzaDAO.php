@@ -21,6 +21,7 @@ class PizzaDAO extends DAO
         return $element;
     }
 
+    // Récupération de l'ensemble des pizzas
     public function getPizzas()
     {
         $sql = 'SELECT pizza.id, pizza.name, pizza.description, pizza.priceSmall, pizza.priceBig, pizza.idAdmin, user.username
@@ -36,16 +37,16 @@ class PizzaDAO extends DAO
         return $pizzas;
     }
 
-        // Récupération d'une pizza en fonction de son ID
-        public function getPizza($id)
-        {
-            $sql = 'SELECT id, name, description, priceSmall, priceBig, idAdmin FROM pizza WHERE id = ?';
-            $result = $this->createQuery($sql, [$id]);
-            $pizza = $result->fetch();
-            $result->closeCursor();
-            return $this->buildObject($pizza);
-        }
-    
+    // Récupération d'une pizza en fonction de son ID
+    public function getPizza($id)
+    {
+        $sql = 'SELECT id, name, description, priceSmall, priceBig, idAdmin FROM pizza WHERE id = ?';
+        $result = $this->createQuery($sql, [$id]);
+        $pizza = $result->fetch();
+        $result->closeCursor();
+        return $this->buildObject($pizza);
+    }
+
     public function addPizza(Parameter $post, $idAdmin)
     {
         $sql = 'INSERT INTO pizza (name, description, priceSmall, priceBig, idAdmin) VALUES (?, ?, ?, ?, ?)';
@@ -76,7 +77,7 @@ class PizzaDAO extends DAO
         $sql = 'DELETE FROM pizza WHERE id = ?';
         $this->createQuery($sql, [$id]);
     }
-    
+
     // Retourne le nombre d'éléments
     public function count()
     {

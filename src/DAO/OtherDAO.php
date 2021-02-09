@@ -20,7 +20,7 @@ class OtherDAO extends DAO
         return $element;
     }
 
-    // Récupération des éléments
+    // Récupération de l'ensemble des éléments autres que les pizzas
     public function getElements()
     {
         $sql = 'SELECT other.id, other.description, other.price, other.category, other.idAdmin, user.username

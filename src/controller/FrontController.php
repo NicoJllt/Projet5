@@ -74,23 +74,4 @@ class FrontController extends Controller
         }
         return $this->view->render('login');
     }
-
-    // public function login(Parameter $post)
-    // {
-    //     if ($post->get('submit')) {
-    //         $result = $this->userDAO->login($post);
-    //         if ($result && $result['isPasswordValid']) {
-    //             $this->session->setFlashMessage('login', 'Vous êtes maintenant connecté');
-    //             $this->session->set('user_id', $result['id']);
-    //             $this->session->set('username', $result['username']);
-    //             return header('Location: ../public/index.php');
-    //         } else {
-    //             $this->session->setFlashMessage('error_login', 'Le nom d\'utilisateur ou le mot de passe sont incorrects');
-    //             return $this->view->render('login', [
-    //                 'post' => $post
-    //             ]);
-    //         }
-    //     }
-    //     return $this->view->render('login');
-    // }
 }

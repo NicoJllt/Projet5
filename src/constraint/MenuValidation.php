@@ -79,11 +79,11 @@ class MenuValidation extends Validation
         if ($this->constraint->notBlank($name, $value)) {
             return $this->constraint->notBlank('Prix demi-lune', $value);
         }
-        if ($this->constraint->minLength($name, $value, 1)) {
-            return $this->constraint->minLength('Prix demi-lune', $value, 1);
+        if ($this->constraint->minLength($name, $value, 0)) {
+            return $this->constraint->minLength('Prix demi-lune', $value, 0);
         }
-        if ($this->constraint->maxLength($name, $value, 2)) {
-            return $this->constraint->maxLength('Prix demi-lune', $value, 2);
+        if ($this->constraint->maxLength($name, $value, 5)) {
+            return $this->constraint->maxLength('Prix demi-lune', $value, 5);
         }
     }
 
@@ -92,11 +92,11 @@ class MenuValidation extends Validation
         if ($this->constraint->notBlank($name, $value)) {
             return $this->constraint->notBlank('Prix entière', $value);
         }
-        if ($this->constraint->minLength($name, $value, 1)) {
-            return $this->constraint->minLength('Prix entière', $value, 1);
+        if ($this->constraint->minLength($name, $value, 0)) {
+            return $this->constraint->minLength('Prix entière', $value, 0);
         }
-        if ($this->constraint->maxLength($name, $value, 2)) {
-            return $this->constraint->maxLength('Prix entière', $value, 2);
+        if ($this->constraint->maxLength($name, $value, 5)) {
+            return $this->constraint->maxLength('Prix entière', $value, 5);
         }
     }
 
@@ -105,11 +105,11 @@ class MenuValidation extends Validation
         if ($this->constraint->notBlank($name, $value)) {
             return $this->constraint->notBlank('Prix', $value);
         }
-        if ($this->constraint->minLength($name, $value, 1)) {
-            return $this->constraint->minLength('Prix', $value, 1);
+        if ($this->constraint->minLength($name, $value, 0)) {
+            return $this->constraint->minLength('Prix', $value, 0);
         }
-        if ($this->constraint->maxLength($name, $value, 2)) {
-            return $this->constraint->maxLength('Prix', $value, 2);
+        if ($this->constraint->maxLength($name, $value, 5)) {
+            return $this->constraint->maxLength('Prix', $value, 5);
         }
     }
 }

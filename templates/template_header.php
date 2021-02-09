@@ -7,14 +7,10 @@
     </div>
 
     <div class="summary-small nav">
-        <!-- <a href="./"><img src="../public/img/logo.png" class="logo-small" alt="logo" /></a></li> -->
         <a href="./" class="home-nav-small">ACCUEIL</a>
         <a href="../public/index.php?route=menu" class="carte-emporter-small">LA CARTE À EMPORTER</a>
         <a href="../public/img/carte-pdf.pdf" class="carte-place-small">LA CARTE SUR PLACE</a>
         <a href="../public/index.php?route=contact" class="contact-nav-small">CONTACT</a>
-        <?php if ($this->session->get('role') === 'admin') { ?>
-            <a href="../public/index.php?route=administration" class="admin-nav">ADMIN</a>
-        <?php } ?>
     </div>
 
     <nav class="summary">
@@ -31,9 +27,6 @@
 
             <li class="home-nav-li"><a href="../public/index.php" class="home-nav"><i class="fas fa-home"></i></a></li>
             <li class="contact-nav-li"><a href="../public/index.php?route=contact" class="contact-nav">CONTACT</a></li>
-            <?php if ($this->session->get('role') === 'admin') { ?>
-                <a href="../public/index.php?route=administration" class="admin-nav">ADMIN</a>
-            <?php } ?>
         </ul>
 
         <div class="icones-nav">

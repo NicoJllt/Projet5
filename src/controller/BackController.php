@@ -18,31 +18,17 @@ class BackController extends Controller
         }
     }
 
-    // Vérification Admin
-    // private function checkAdmin()
-    // {
-    //     if ($this->checkLoggedIn() && !($this->session->get('role') === 'admin')) {
-    //         $this->session->setFlashMessage('not_admin', 'Vous n\'êtes pas autorisé à accéder à cette page');
-    //         header('Location: ../public/index.php?route=home');
-    //         return false;
-    //     } else {
-    //         return true;
-    //     }
-    // }
-
     // PAGE ADMINISTRATION
     public function administration()
     {
         if ($this->checkLoggedIn()) {
             $pizzas = $this->pizzaDAO->getPizzas();
             $elements = $this->otherDAO->getElements();
-            // $parameters = $this->settingDAO->getParameters();
             $users = $this->userDAO->getUsers();
 
             return $this->view->render('administration', [
                 'pizzas' => $pizzas,
                 'elements' => $elements,
-                // 'paramaters' => $parameters,
                 'users' => $users
             ]);
         }
@@ -164,64 +150,6 @@ class BackController extends Controller
         }
     }
 
-    // PAGE CONTACT - AJOUTER ELEMENT
-    public function addSetting(Parameter $post)
-    {
-        if ($this->checkLoggedIn()) {
-            if ($post->get('submit')) {
-                $errors = $this->validation->validate($post, 'Setting');
-                if (!$errors) {
-                    $this->settingDAO->addSetting($post, $this->session->get('user_id'));
-                    $this->session->setFlashMessage('add_element', 'L\'élément a bien été ajouté');
-                    return header('Location: ../public/index.php?route=administration');
-                }
-                return $this->view->render('add_setting', [
-                    'post' => $post,
-                    'errors' => $errors
-                ]);
-            }
-            return $this->view->render('add_setting');
-        }
-    }
-
-    // PAGE CONTACT - MODIFIER ELEMENT
-    public function editSetting(Parameter $post, $settingId)
-    {
-        if ($this->checkLoggedIn()) {
-            if ($post->get('submit')) {
-                $errors = $this->validation->validate($post, 'Setting');
-                if (!$errors) {
-                    $this->settingDAO->editSetting($post, $settingId, $this->session->get('user_id'));
-                    $this->session->setFlashMessage('edit_element', 'L\'élément a bien été mis à jour');
-                    return header('Location: ../public/index.php?route=administration');
-                }
-                return $this->view->render('edit_setting', [
-                    'post' => $post,
-                    'errors' => $errors
-                ]);
-            }
-            $setting = $this->settingDAO->getSetting($settingId);
-            $post->set('settingId', $setting->getSettingId());
-            $post->set('phone', $setting->getPhone());
-            $post->set('mail', $setting->getMail());
-            $post->set('info', $setting->getInfo());
-            $post->set('internet', $setting->getInternet());
-            $this->view->render('edit_setting', [
-                'post' => $post
-            ]);
-        }
-    }
-
-    // PAGE CONTACT - SUPPRIMER ELEMENT
-    public function deleteSetting($settingId)
-    {
-        if ($this->checkLoggedIn()) {
-            $this->settingDAO->deleteSetting($settingId);
-            $this->session->setFlashMessage('delete_element', 'L\'élément a bien été supprimé');
-            return header('Location: ../public/index.php?route=administration');
-        }
-    }
-
     // LOGIN - PASSWORD
     public function updatePassword(Parameter $post)
     {
@@ -247,14 +175,6 @@ class BackController extends Controller
     {
         if ($this->checkLoggedIn()) {
             $this->logoutOrDelete('logout');
-        }
-    }
-    // Suppression d'un compte par son utilisateur
-    public function deleteAccount()
-    {
-        if ($this->checkLoggedIn()) {
-            $this->userDAO->deleteAccount($this->session->get('username'));
-            $this->logoutOrDelete('delete_account');
         }
     }
 

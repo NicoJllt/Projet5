@@ -1195,7 +1195,7 @@ ul.gallery li a.pizza-picture-home12 {
     .menu-nav:hover,
     .home-nav:hover,
     .contact-nav:hover {
-        background-color: none;
+        background-color: unset;
         border-bottom: none;
     }
 
