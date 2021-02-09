@@ -143,8 +143,6 @@ body {
     display: block;
     text-decoration: none;
     color: black;
-    /*    border-bottom: 35px solid transparent;
-    */
     padding: 30px 0px;
     height: 25px;
 }
@@ -156,17 +154,8 @@ body {
 
 .menu-nav-li {
     vertical-align: middle;
-    /* margin-right: 11px; */
     margin-left: 25%;
 }
-/* 
-<li class="menu-nav-li">
-<a href="#" class="menu-nav">LA CARTE &ensp;</a>
-<ul class="sous">
-    <li><a href="../public/index.php?route=takeAway" class="carte-emporter">À EMPORTER</a></li>
-    <li><a href="/carte-pdf.pdf" class="carte-place">SUR PLACE</a></li>
-</ul>
-</li> */
 
 .menu-nav-li:hover li a {
     -webkit-animation-fill-mode: forwards;
@@ -295,13 +284,6 @@ body {
     transition-duration: 0.5s;
 }
 
-/*
-.conteneur {
-    margin: 50px 20px;
-    height: 1500px;
-}
-*/
-
 .icones-nav {
     display: flex;
     flex-direction: row;
@@ -424,10 +406,6 @@ body {
     padding: 10px;
 }
 
-/* .icones-nav i:hover {
-    font-size: 25px;
-} */
-
 .phone-number-bloc span {
     display: none;
     -moz-border-radius: 6px;
@@ -488,7 +466,6 @@ body {
     border: none;
     border-radius: 2px;
     box-shadow: 1px 1px 3px #aaa;
-    /* border: 1px solid black; */
     text-transform: uppercase;
     cursor: pointer;
 }
@@ -799,29 +776,23 @@ ul.gallery li a.pizza-picture-home12 {
     -moz-transform: rotate(2deg);
 }
 
-/*Logo Footer*/
-/*
-.logo-footer-home {
-    position: relative;
-    height: 300px;
-    width: 50%;
-    right: 25%;
-    top: 50px;
-    margin-bottom: 80px;
-    opacity: 0.8;
-}
-*/
-
 /* PAGE ADMINISTRATION */
 #bloc-admin {
     display: block;
     position: relative;
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.9);
     border: 1px solid red;
     margin: 110px auto 20px auto;
     padding: 10px;
     width: 98%;
     text-align: center;
+}
+
+#bloc-admin table {
+    position: relative;
+    margin: 20px 0;
+    line-height: 1.5em;
+    width: 100%;
 }
 
 #bloc-admin h1 {
@@ -845,13 +816,6 @@ ul.gallery li a.pizza-picture-home12 {
     font-size: 40px;
     border-radius: 10% / 50%;
     user-select: none;
-}
-
-#bloc-admin table {
-    position: relative;
-    margin: 20px 0;
-    line-height: 1.5em;
-    width: 100%;
 }
 
 #bloc-admin td:not(:last-child) {
@@ -878,8 +842,7 @@ ul.gallery li a.pizza-picture-home12 {
     font-weight: bold;
     list-style-type: none;
     text-decoration: none;
-    margin: 10px;
-    padding: 10px;
+    padding: 5px;
     line-height: 3em;
     text-align: center;
     font-size: 12px;
@@ -905,11 +868,6 @@ ul.gallery li a.pizza-picture-home12 {
 .delete-button {
     background-color: #Ff4144;
 }
-
-/* #pizza-table-admin, #other-table-admin, #user-table-admin {
-    margin: 0;
-    width: 100%;
-} */
 
 #session-name {
     font-weight: bold;
@@ -1040,7 +998,7 @@ ul.gallery li a.pizza-picture-home12 {
     #bloc-admin h1 {
         font-size: 30px;
         padding: 10px;
-        width: 400px;
+        width: 300px;
     }
 
     #bloc-admin h2 {
@@ -1068,20 +1026,21 @@ ul.gallery li a.pizza-picture-home12 {
     }
 
     #pizza-form, #element-form {
-        width: 400px;
+        width: 340px;
     }
 
     #pizza-form h1, #element-form h1 {
-        width: 350px;
+        width: 300px;
     }
 
-    #description-pizza-input {
+    #description-pizza-input, #description-element-input {
         width: 350px;
     }
 }
 
 /* MEDIA QUERIES MAX WIDTH 650PX */
-@media all and (max-width: 650px) {
+/* @media all and (max-width: 650px) { */
+    @media only screen and (max-width: 810px) { 
 
     html, body {
         padding: 0;
@@ -1090,7 +1049,6 @@ ul.gallery li a.pizza-picture-home12 {
 
     body {
         background-image: none;
-        /*        height: 100vh;*/
     }
 
     .background-image-mobile {
@@ -1130,9 +1088,6 @@ ul.gallery li a.pizza-picture-home12 {
         width: 30px;
         top: 9px;
         right: 15px;
-        /* float: right; */
-        /* margin-right: 10px; */
-        /* margin-top: 5px; */
         cursor: pointer;
         z-index: 2000;
     }
@@ -1244,25 +1199,11 @@ ul.gallery li a.pizza-picture-home12 {
         border-bottom: none;
     }
 
-    /*
-    .menu-nav-li:hover {
-        display: none;
-    }
-*/
-
     .sous {
         width: 135%;
         top: 59px;
         border-top: 1px solid rgba(0, 0, 0, 0.5);
     }
-
-    /*
-    .sous a {
-        font-size: 12px;
-        padding: 15px;
-        width: 100%;
-    }
-*/
 
     .icones-nav {
         display: none;
@@ -1334,8 +1275,12 @@ ul.gallery li a.pizza-picture-home12 {
     }
 
     #bloc-admin table {
-        margin: 20px 0;
+        margin: 20px auto;
         line-height: 1em;
+    }
+
+    #update-password-bloc {
+        width: 300px;
     }
 
     #footer {

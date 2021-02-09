@@ -24,8 +24,8 @@
             <td>Id</td>
             <td>Nom</td>
             <td>Description</td>
-            <td>Prix demi-lune (1 personne)</td>
-            <td>Prix entière (2 personnes)</td>
+            <td>Prix 1P</td>
+            <td>Prix 2P</td>
             <td class="action-admin">ACTION</td>
         </tr>
         <?php
@@ -39,7 +39,7 @@
                 <td><?= htmlspecialchars($pizza->getPriceBig()); ?></td>
                 <td>
                     <a class="edit-button" href="../public/index.php?route=editPizza&id=<?= $pizza->getId(); ?>">Modifier</a>
-                    <a class="delete-button" href="../public/index.php?route=deletePizza&id=<?= $pizza->getId(); ?>">Supprimer</a>
+                    <a class="delete-button" onclick="return confirm('Souhaitez-vous vraiment supprimer cette pizza ?');" href="../public/index.php?route=deletePizza&id=<?= $pizza->getId(); ?>">Supprimer</a>
                 </td>
             </tr>
         <?php
@@ -69,7 +69,7 @@
                 <td><?= htmlspecialchars($other->getCategory()); ?></td>
                 <td>
                     <a class="edit-button" href="../public/index.php?route=editElement&id=<?= $other->getId(); ?>">Modifier</a>
-                    <a class="delete-button" href="../public/index.php?route=deleteElement&id=<?= $other->getId(); ?>">Supprimer</a>
+                    <a class="delete-button" onclick="return confirm('Souhaitez-vous vraiment supprimer cet élément ?');" href="../public/index.php?route=deleteElement&id=<?= $other->getId(); ?>">Supprimer</a>
                 </td>
             </tr>
         <?php

@@ -148,7 +148,7 @@ class BackController extends Controller
             $post->set('description', $element->getDescription());
             $post->set('price', $element->getPrice());
             $post->set('category', $element->getCategory());
-            $this->view->render('edit_episode', [
+            $this->view->render('edit_element', [
                 'post' => $post
             ]);
         }

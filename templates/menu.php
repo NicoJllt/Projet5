@@ -1,6 +1,6 @@
 <!-- PAGE MENU -->
 
-<?php $this->title = "La carte - PAPACIONU PARIS"; ?>
+<?php $this->title = "La Carte - Papacionu Paris"; ?>
 <?php $this->description = "Retrouvez toutes nos pizzas à emporter grâce à notre menu en ligne."; ?>
 
 <div id="menu-bloc">

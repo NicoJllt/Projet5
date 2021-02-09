@@ -1,6 +1,6 @@
 <!-- PAGE CONTACT -->
 
-<?php $this->title = "Contact - PAPACIONU PARIS"; ?>
+<?php $this->title = "Contact - Papacionu Paris"; ?>
 <?php $this->description = "Contactez-nous pour plus de renseignements."; ?>
 
 <div id="contact-elements">
